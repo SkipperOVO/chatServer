@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import personal.fields.server.NettyChatServer;
 
 import javax.annotation.PostConstruct;
 
@@ -16,12 +17,15 @@ public class NettyServerBootStrap {
 
         SpringApplication.run(NettyServerBootStrap.class);
 
-        logger.info("NettyServer 启动成功！");
     }
 
     @PostConstruct
     public void start() {
-
+        try {
+            new NettyChatServer().start();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

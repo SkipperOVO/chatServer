@@ -1,0 +1,83 @@
+
+syntax = "proto2";
+
+option java_package = "personal.fields.protocol";
+option java_outer_classname = "ChatProtocol";
+
+message ChatProtoPack {
+
+
+    enum DataType {
+        HeartBeatReqType = 1;
+        HeartBeatRespType = 2;
+        C2CSendReqType = 3;
+        C2CPushRespType = 4;
+    }
+
+    required int32 version = 1;
+
+    required DataType dataType = 2;
+
+    oneof dataBody {
+
+        HeartBeatReq heartBeatReq = 3;
+        HeartBeatResp heartBeatResp = 4;
+        C2CSendReq c2cSendReq = 5;
+        C2CPushResp c2cPushResp = 6;
+
+    }
+}
+
+
+message HeartBeatReq {
+
+    required int32 version = 1;
+
+    required int32 userId = 2;
+
+    // msg 字段用于重用 心跳请求 传输数据
+    optional string msg = 3;
+}
+
+
+message HeartBeatResp {
+
+    required int32 version = 1;
+
+    // msg 字段用于重用 心跳请求 传输数据
+    optional string msg = 3;
+}
+
+
+message C2CSendReq {
+
+    required int32 version = 1;
+
+    required int32 fromId = 2;
+
+    required int32 toId = 3;
+
+    required string msg = 4;
+
+    enum type {
+        text = 0;
+        pic = 1;
+        audio = 2;
+        video = 3;
+        file = 4;
+    }
+}
+
+
+message C2CPushResp {
+
+    required int32 version = 1;
+
+    required int32 fromId = 2;
+
+    // 服务器对消息的生成的 id
+    required int32 msgId = 3;
+
+    required string msg = 4;
+
+}

@@ -1,0 +1,15 @@
+
+syntax = "proto2";
+
+option java_package = "personal.fields.protocol";
+option java_outer_classname = "HeartBeatRequest";
+
+message HeartBeatReq {
+
+    required int32 version = 1;
+
+    required int32 userId = 2;
+
+    // msg 字段用于重用 心跳请求 传输数据
+    optional string msg = 3;
+}

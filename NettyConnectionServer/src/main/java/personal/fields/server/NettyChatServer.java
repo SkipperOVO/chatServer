@@ -36,7 +36,9 @@ public class NettyChatServer {
         ChannelFuture future = serverBootstrap.bind().sync();
 
         if (future.isSuccess()) {
-
+            logger.info("Netty server 启动成功！");
+        } else {
+            logger.info("Netty server 启动失败！");
         }
 
     }

@@ -1,0 +1,26 @@
+
+syntax = "proto2";
+
+option java_package = "personal.fields.protocol";
+option java_outer_classname = "C2CSendRequest";
+
+message C2CSendReq {
+
+    required int32 version = 1;
+
+    required int32 fromId = 2;
+
+    required int32 toId = 3;
+
+    required string msg = 4;
+
+    enum type {
+        text = 0;
+        pic = 1;
+        audio = 2;
+        video = 3;
+        file = 4;
+    }
+
+
+}

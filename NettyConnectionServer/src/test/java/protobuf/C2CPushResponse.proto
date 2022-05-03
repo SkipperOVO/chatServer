@@ -1,0 +1,18 @@
+
+syntax = "proto2"
+
+option java_package = "personal.fields.protocol";
+option java_outer_classname = "C2CPushResponse";
+
+message C2CPushResponse {
+
+    required int32 version = 1
+
+    required int32 fromId = 2;
+
+    // 服务器对消息的生成的 id
+    required int32 msgId = 3
+
+    required string msg = 4;
+
+}

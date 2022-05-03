@@ -1,0 +1,12 @@
+
+syntax = "proto2"
+
+option java_package = "personal.fields.ACKRequest";
+option java_outer_classname = "ACKRequest";
+
+message ACKRequest {
+
+
+
+}
+
