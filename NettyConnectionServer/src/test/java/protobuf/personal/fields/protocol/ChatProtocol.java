@@ -30,75 +30,79 @@ public final class ChatProtocol {
     int getVersion();
 
     /**
-     * <code>required .ChatProtoPack.DataType dataType = 2;</code>
-     * @return Whether the dataType field is set.
-     */
-    boolean hasDataType();
-    /**
-     * <code>required .ChatProtoPack.DataType dataType = 2;</code>
-     * @return The dataType.
-     */
-    personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType getDataType();
-
-    /**
-     * <code>.HeartBeatReq heartBeatReq = 3;</code>
+     * <code>.HeartBeatReq heartBeatReq = 2;</code>
      * @return Whether the heartBeatReq field is set.
      */
     boolean hasHeartBeatReq();
     /**
-     * <code>.HeartBeatReq heartBeatReq = 3;</code>
+     * <code>.HeartBeatReq heartBeatReq = 2;</code>
      * @return The heartBeatReq.
      */
     personal.fields.protocol.ChatProtocol.HeartBeatReq getHeartBeatReq();
     /**
-     * <code>.HeartBeatReq heartBeatReq = 3;</code>
+     * <code>.HeartBeatReq heartBeatReq = 2;</code>
      */
     personal.fields.protocol.ChatProtocol.HeartBeatReqOrBuilder getHeartBeatReqOrBuilder();
 
     /**
-     * <code>.HeartBeatResp heartBeatResp = 4;</code>
+     * <code>.HeartBeatResp heartBeatResp = 3;</code>
      * @return Whether the heartBeatResp field is set.
      */
     boolean hasHeartBeatResp();
     /**
-     * <code>.HeartBeatResp heartBeatResp = 4;</code>
+     * <code>.HeartBeatResp heartBeatResp = 3;</code>
      * @return The heartBeatResp.
      */
     personal.fields.protocol.ChatProtocol.HeartBeatResp getHeartBeatResp();
     /**
-     * <code>.HeartBeatResp heartBeatResp = 4;</code>
+     * <code>.HeartBeatResp heartBeatResp = 3;</code>
      */
     personal.fields.protocol.ChatProtocol.HeartBeatRespOrBuilder getHeartBeatRespOrBuilder();
 
     /**
-     * <code>.C2CSendReq c2cSendReq = 5;</code>
+     * <code>.C2CSendReq c2cSendReq = 4;</code>
      * @return Whether the c2cSendReq field is set.
      */
     boolean hasC2CSendReq();
     /**
-     * <code>.C2CSendReq c2cSendReq = 5;</code>
+     * <code>.C2CSendReq c2cSendReq = 4;</code>
      * @return The c2cSendReq.
      */
     personal.fields.protocol.ChatProtocol.C2CSendReq getC2CSendReq();
     /**
-     * <code>.C2CSendReq c2cSendReq = 5;</code>
+     * <code>.C2CSendReq c2cSendReq = 4;</code>
      */
     personal.fields.protocol.ChatProtocol.C2CSendReqOrBuilder getC2CSendReqOrBuilder();
 
     /**
-     * <code>.C2CPushResp c2cPushResp = 6;</code>
-     * @return Whether the c2cPushResp field is set.
+     * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+     * @return Whether the s2cNotifyMsg field is set.
      */
-    boolean hasC2CPushResp();
+    boolean hasS2CNotifyMsg();
     /**
-     * <code>.C2CPushResp c2cPushResp = 6;</code>
-     * @return The c2cPushResp.
+     * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+     * @return The s2cNotifyMsg.
      */
-    personal.fields.protocol.ChatProtocol.C2CPushResp getC2CPushResp();
+    personal.fields.protocol.ChatProtocol.S2CNotifyMsg getS2CNotifyMsg();
     /**
-     * <code>.C2CPushResp c2cPushResp = 6;</code>
+     * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
      */
-    personal.fields.protocol.ChatProtocol.C2CPushRespOrBuilder getC2CPushRespOrBuilder();
+    personal.fields.protocol.ChatProtocol.S2CNotifyMsgOrBuilder getS2CNotifyMsgOrBuilder();
+
+    /**
+     * <code>.ACK ack = 6;</code>
+     * @return Whether the ack field is set.
+     */
+    boolean hasAck();
+    /**
+     * <code>.ACK ack = 6;</code>
+     * @return The ack.
+     */
+    personal.fields.protocol.ChatProtocol.ACK getAck();
+    /**
+     * <code>.ACK ack = 6;</code>
+     */
+    personal.fields.protocol.ChatProtocol.ACKOrBuilder getAckOrBuilder();
 
     public personal.fields.protocol.ChatProtocol.ChatProtoPack.DataBodyCase getDataBodyCase();
   }
@@ -115,7 +119,6 @@ public final class ChatProtocol {
       super(builder);
     }
     private ChatProtoPack() {
-      dataType_ = 1;
     }
 
     @java.lang.Override
@@ -154,21 +157,9 @@ public final class ChatProtocol {
               version_ = input.readInt32();
               break;
             }
-            case 16: {
-              int rawValue = input.readEnum();
-                @SuppressWarnings("deprecation")
-              personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType value = personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(2, rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                dataType_ = rawValue;
-              }
-              break;
-            }
-            case 26: {
+            case 18: {
               personal.fields.protocol.ChatProtocol.HeartBeatReq.Builder subBuilder = null;
-              if (dataBodyCase_ == 3) {
+              if (dataBodyCase_ == 2) {
                 subBuilder = ((personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_).toBuilder();
               }
               dataBody_ =
@@ -177,12 +168,12 @@ public final class ChatProtocol {
                 subBuilder.mergeFrom((personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_);
                 dataBody_ = subBuilder.buildPartial();
               }
-              dataBodyCase_ = 3;
+              dataBodyCase_ = 2;
               break;
             }
-            case 34: {
+            case 26: {
               personal.fields.protocol.ChatProtocol.HeartBeatResp.Builder subBuilder = null;
-              if (dataBodyCase_ == 4) {
+              if (dataBodyCase_ == 3) {
                 subBuilder = ((personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_).toBuilder();
               }
               dataBody_ =
@@ -191,12 +182,12 @@ public final class ChatProtocol {
                 subBuilder.mergeFrom((personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_);
                 dataBody_ = subBuilder.buildPartial();
               }
-              dataBodyCase_ = 4;
+              dataBodyCase_ = 3;
               break;
             }
-            case 42: {
+            case 34: {
               personal.fields.protocol.ChatProtocol.C2CSendReq.Builder subBuilder = null;
-              if (dataBodyCase_ == 5) {
+              if (dataBodyCase_ == 4) {
                 subBuilder = ((personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_).toBuilder();
               }
               dataBody_ =
@@ -205,18 +196,32 @@ public final class ChatProtocol {
                 subBuilder.mergeFrom((personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_);
                 dataBody_ = subBuilder.buildPartial();
               }
+              dataBodyCase_ = 4;
+              break;
+            }
+            case 42: {
+              personal.fields.protocol.ChatProtocol.S2CNotifyMsg.Builder subBuilder = null;
+              if (dataBodyCase_ == 5) {
+                subBuilder = ((personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_).toBuilder();
+              }
+              dataBody_ =
+                  input.readMessage(personal.fields.protocol.ChatProtocol.S2CNotifyMsg.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_);
+                dataBody_ = subBuilder.buildPartial();
+              }
               dataBodyCase_ = 5;
               break;
             }
             case 50: {
-              personal.fields.protocol.ChatProtocol.C2CPushResp.Builder subBuilder = null;
+              personal.fields.protocol.ChatProtocol.ACK.Builder subBuilder = null;
               if (dataBodyCase_ == 6) {
-                subBuilder = ((personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_).toBuilder();
+                subBuilder = ((personal.fields.protocol.ChatProtocol.ACK) dataBody_).toBuilder();
               }
               dataBody_ =
-                  input.readMessage(personal.fields.protocol.ChatProtocol.C2CPushResp.PARSER, extensionRegistry);
+                  input.readMessage(personal.fields.protocol.ChatProtocol.ACK.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_);
+                subBuilder.mergeFrom((personal.fields.protocol.ChatProtocol.ACK) dataBody_);
                 dataBody_ = subBuilder.buildPartial();
               }
               dataBodyCase_ = 6;
@@ -256,130 +261,17 @@ public final class ChatProtocol {
               personal.fields.protocol.ChatProtocol.ChatProtoPack.class, personal.fields.protocol.ChatProtocol.ChatProtoPack.Builder.class);
     }
 
-    /**
-     * Protobuf enum {@code ChatProtoPack.DataType}
-     */
-    public enum DataType
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>HeartBeatReqType = 1;</code>
-       */
-      HeartBeatReqType(1),
-      /**
-       * <code>HeartBeatRespType = 2;</code>
-       */
-      HeartBeatRespType(2),
-      /**
-       * <code>C2CSendReqType = 3;</code>
-       */
-      C2CSendReqType(3),
-      /**
-       * <code>C2CPushRespType = 4;</code>
-       */
-      C2CPushRespType(4),
-      ;
-
-      /**
-       * <code>HeartBeatReqType = 1;</code>
-       */
-      public static final int HeartBeatReqType_VALUE = 1;
-      /**
-       * <code>HeartBeatRespType = 2;</code>
-       */
-      public static final int HeartBeatRespType_VALUE = 2;
-      /**
-       * <code>C2CSendReqType = 3;</code>
-       */
-      public static final int C2CSendReqType_VALUE = 3;
-      /**
-       * <code>C2CPushRespType = 4;</code>
-       */
-      public static final int C2CPushRespType_VALUE = 4;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @param value The numeric wire value of the corresponding enum entry.
-       * @return The enum associated with the given numeric wire value.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static DataType valueOf(int value) {
-        return forNumber(value);
-      }
-
-      /**
-       * @param value The numeric wire value of the corresponding enum entry.
-       * @return The enum associated with the given numeric wire value.
-       */
-      public static DataType forNumber(int value) {
-        switch (value) {
-          case 1: return HeartBeatReqType;
-          case 2: return HeartBeatRespType;
-          case 3: return C2CSendReqType;
-          case 4: return C2CPushRespType;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<DataType>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          DataType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<DataType>() {
-              public DataType findValueByNumber(int number) {
-                return DataType.forNumber(number);
-              }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return personal.fields.protocol.ChatProtocol.ChatProtoPack.getDescriptor().getEnumTypes().get(0);
-      }
-
-      private static final DataType[] VALUES = values();
-
-      public static DataType valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        return VALUES[desc.getIndex()];
-      }
-
-      private final int value;
-
-      private DataType(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:ChatProtoPack.DataType)
-    }
-
     private int bitField0_;
     private int dataBodyCase_ = 0;
     private java.lang.Object dataBody_;
     public enum DataBodyCase
         implements com.google.protobuf.Internal.EnumLite,
             com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      HEARTBEATREQ(3),
-      HEARTBEATRESP(4),
-      C2CSENDREQ(5),
-      C2CPUSHRESP(6),
+      HEARTBEATREQ(2),
+      HEARTBEATRESP(3),
+      C2CSENDREQ(4),
+      S2CNOTIFYMSG(5),
+      ACK(6),
       DATABODY_NOT_SET(0);
       private final int value;
       private DataBodyCase(int value) {
@@ -397,10 +289,11 @@ public final class ChatProtocol {
 
       public static DataBodyCase forNumber(int value) {
         switch (value) {
-          case 3: return HEARTBEATREQ;
-          case 4: return HEARTBEATRESP;
-          case 5: return C2CSENDREQ;
-          case 6: return C2CPUSHRESP;
+          case 2: return HEARTBEATREQ;
+          case 3: return HEARTBEATRESP;
+          case 4: return C2CSENDREQ;
+          case 5: return S2CNOTIFYMSG;
+          case 6: return ACK;
           case 0: return DATABODY_NOT_SET;
           default: return null;
         }
@@ -435,147 +328,159 @@ public final class ChatProtocol {
       return version_;
     }
 
-    public static final int DATATYPE_FIELD_NUMBER = 2;
-    private int dataType_;
+    public static final int HEARTBEATREQ_FIELD_NUMBER = 2;
     /**
-     * <code>required .ChatProtoPack.DataType dataType = 2;</code>
-     * @return Whether the dataType field is set.
-     */
-    @java.lang.Override public boolean hasDataType() {
-      return ((bitField0_ & 0x00000002) != 0);
-    }
-    /**
-     * <code>required .ChatProtoPack.DataType dataType = 2;</code>
-     * @return The dataType.
-     */
-    @java.lang.Override public personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType getDataType() {
-      @SuppressWarnings("deprecation")
-      personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType result = personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType.valueOf(dataType_);
-      return result == null ? personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType.HeartBeatReqType : result;
-    }
-
-    public static final int HEARTBEATREQ_FIELD_NUMBER = 3;
-    /**
-     * <code>.HeartBeatReq heartBeatReq = 3;</code>
+     * <code>.HeartBeatReq heartBeatReq = 2;</code>
      * @return Whether the heartBeatReq field is set.
      */
     @java.lang.Override
     public boolean hasHeartBeatReq() {
-      return dataBodyCase_ == 3;
+      return dataBodyCase_ == 2;
     }
     /**
-     * <code>.HeartBeatReq heartBeatReq = 3;</code>
+     * <code>.HeartBeatReq heartBeatReq = 2;</code>
      * @return The heartBeatReq.
      */
     @java.lang.Override
     public personal.fields.protocol.ChatProtocol.HeartBeatReq getHeartBeatReq() {
-      if (dataBodyCase_ == 3) {
+      if (dataBodyCase_ == 2) {
          return (personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_;
       }
       return personal.fields.protocol.ChatProtocol.HeartBeatReq.getDefaultInstance();
     }
     /**
-     * <code>.HeartBeatReq heartBeatReq = 3;</code>
+     * <code>.HeartBeatReq heartBeatReq = 2;</code>
      */
     @java.lang.Override
     public personal.fields.protocol.ChatProtocol.HeartBeatReqOrBuilder getHeartBeatReqOrBuilder() {
-      if (dataBodyCase_ == 3) {
+      if (dataBodyCase_ == 2) {
          return (personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_;
       }
       return personal.fields.protocol.ChatProtocol.HeartBeatReq.getDefaultInstance();
     }
 
-    public static final int HEARTBEATRESP_FIELD_NUMBER = 4;
+    public static final int HEARTBEATRESP_FIELD_NUMBER = 3;
     /**
-     * <code>.HeartBeatResp heartBeatResp = 4;</code>
+     * <code>.HeartBeatResp heartBeatResp = 3;</code>
      * @return Whether the heartBeatResp field is set.
      */
     @java.lang.Override
     public boolean hasHeartBeatResp() {
-      return dataBodyCase_ == 4;
+      return dataBodyCase_ == 3;
     }
     /**
-     * <code>.HeartBeatResp heartBeatResp = 4;</code>
+     * <code>.HeartBeatResp heartBeatResp = 3;</code>
      * @return The heartBeatResp.
      */
     @java.lang.Override
     public personal.fields.protocol.ChatProtocol.HeartBeatResp getHeartBeatResp() {
-      if (dataBodyCase_ == 4) {
+      if (dataBodyCase_ == 3) {
          return (personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_;
       }
       return personal.fields.protocol.ChatProtocol.HeartBeatResp.getDefaultInstance();
     }
     /**
-     * <code>.HeartBeatResp heartBeatResp = 4;</code>
+     * <code>.HeartBeatResp heartBeatResp = 3;</code>
      */
     @java.lang.Override
     public personal.fields.protocol.ChatProtocol.HeartBeatRespOrBuilder getHeartBeatRespOrBuilder() {
-      if (dataBodyCase_ == 4) {
+      if (dataBodyCase_ == 3) {
          return (personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_;
       }
       return personal.fields.protocol.ChatProtocol.HeartBeatResp.getDefaultInstance();
     }
 
-    public static final int C2CSENDREQ_FIELD_NUMBER = 5;
+    public static final int C2CSENDREQ_FIELD_NUMBER = 4;
     /**
-     * <code>.C2CSendReq c2cSendReq = 5;</code>
+     * <code>.C2CSendReq c2cSendReq = 4;</code>
      * @return Whether the c2cSendReq field is set.
      */
     @java.lang.Override
     public boolean hasC2CSendReq() {
-      return dataBodyCase_ == 5;
+      return dataBodyCase_ == 4;
     }
     /**
-     * <code>.C2CSendReq c2cSendReq = 5;</code>
+     * <code>.C2CSendReq c2cSendReq = 4;</code>
      * @return The c2cSendReq.
      */
     @java.lang.Override
     public personal.fields.protocol.ChatProtocol.C2CSendReq getC2CSendReq() {
-      if (dataBodyCase_ == 5) {
+      if (dataBodyCase_ == 4) {
          return (personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_;
       }
       return personal.fields.protocol.ChatProtocol.C2CSendReq.getDefaultInstance();
     }
     /**
-     * <code>.C2CSendReq c2cSendReq = 5;</code>
+     * <code>.C2CSendReq c2cSendReq = 4;</code>
      */
     @java.lang.Override
     public personal.fields.protocol.ChatProtocol.C2CSendReqOrBuilder getC2CSendReqOrBuilder() {
-      if (dataBodyCase_ == 5) {
+      if (dataBodyCase_ == 4) {
          return (personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_;
       }
       return personal.fields.protocol.ChatProtocol.C2CSendReq.getDefaultInstance();
     }
 
-    public static final int C2CPUSHRESP_FIELD_NUMBER = 6;
+    public static final int S2CNOTIFYMSG_FIELD_NUMBER = 5;
     /**
-     * <code>.C2CPushResp c2cPushResp = 6;</code>
-     * @return Whether the c2cPushResp field is set.
+     * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+     * @return Whether the s2cNotifyMsg field is set.
      */
     @java.lang.Override
-    public boolean hasC2CPushResp() {
+    public boolean hasS2CNotifyMsg() {
+      return dataBodyCase_ == 5;
+    }
+    /**
+     * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+     * @return The s2cNotifyMsg.
+     */
+    @java.lang.Override
+    public personal.fields.protocol.ChatProtocol.S2CNotifyMsg getS2CNotifyMsg() {
+      if (dataBodyCase_ == 5) {
+         return (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_;
+      }
+      return personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance();
+    }
+    /**
+     * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+     */
+    @java.lang.Override
+    public personal.fields.protocol.ChatProtocol.S2CNotifyMsgOrBuilder getS2CNotifyMsgOrBuilder() {
+      if (dataBodyCase_ == 5) {
+         return (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_;
+      }
+      return personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance();
+    }
+
+    public static final int ACK_FIELD_NUMBER = 6;
+    /**
+     * <code>.ACK ack = 6;</code>
+     * @return Whether the ack field is set.
+     */
+    @java.lang.Override
+    public boolean hasAck() {
       return dataBodyCase_ == 6;
     }
     /**
-     * <code>.C2CPushResp c2cPushResp = 6;</code>
-     * @return The c2cPushResp.
+     * <code>.ACK ack = 6;</code>
+     * @return The ack.
      */
     @java.lang.Override
-    public personal.fields.protocol.ChatProtocol.C2CPushResp getC2CPushResp() {
+    public personal.fields.protocol.ChatProtocol.ACK getAck() {
       if (dataBodyCase_ == 6) {
-         return (personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_;
+         return (personal.fields.protocol.ChatProtocol.ACK) dataBody_;
       }
-      return personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance();
+      return personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance();
     }
     /**
-     * <code>.C2CPushResp c2cPushResp = 6;</code>
+     * <code>.ACK ack = 6;</code>
      */
     @java.lang.Override
-    public personal.fields.protocol.ChatProtocol.C2CPushRespOrBuilder getC2CPushRespOrBuilder() {
+    public personal.fields.protocol.ChatProtocol.ACKOrBuilder getAckOrBuilder() {
       if (dataBodyCase_ == 6) {
-         return (personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_;
+         return (personal.fields.protocol.ChatProtocol.ACK) dataBody_;
       }
-      return personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance();
+      return personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -586,10 +491,6 @@ public final class ChatProtocol {
       if (isInitialized == 0) return false;
 
       if (!hasVersion()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasDataType()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -611,8 +512,14 @@ public final class ChatProtocol {
           return false;
         }
       }
-      if (hasC2CPushResp()) {
-        if (!getC2CPushResp().isInitialized()) {
+      if (hasS2CNotifyMsg()) {
+        if (!getS2CNotifyMsg().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAck()) {
+        if (!getAck().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -627,20 +534,20 @@ public final class ChatProtocol {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeInt32(1, version_);
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeEnum(2, dataType_);
+      if (dataBodyCase_ == 2) {
+        output.writeMessage(2, (personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_);
       }
       if (dataBodyCase_ == 3) {
-        output.writeMessage(3, (personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_);
+        output.writeMessage(3, (personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_);
       }
       if (dataBodyCase_ == 4) {
-        output.writeMessage(4, (personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_);
+        output.writeMessage(4, (personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_);
       }
       if (dataBodyCase_ == 5) {
-        output.writeMessage(5, (personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_);
+        output.writeMessage(5, (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_);
       }
       if (dataBodyCase_ == 6) {
-        output.writeMessage(6, (personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_);
+        output.writeMessage(6, (personal.fields.protocol.ChatProtocol.ACK) dataBody_);
       }
       unknownFields.writeTo(output);
     }
@@ -655,25 +562,25 @@ public final class ChatProtocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, version_);
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (dataBodyCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, dataType_);
+          .computeMessageSize(2, (personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_);
       }
       if (dataBodyCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, (personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_);
+          .computeMessageSize(3, (personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_);
       }
       if (dataBodyCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_);
+          .computeMessageSize(4, (personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_);
       }
       if (dataBodyCase_ == 5) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, (personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_);
+          .computeMessageSize(5, (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_);
       }
       if (dataBodyCase_ == 6) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, (personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_);
+          .computeMessageSize(6, (personal.fields.protocol.ChatProtocol.ACK) dataBody_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -695,27 +602,27 @@ public final class ChatProtocol {
         if (getVersion()
             != other.getVersion()) return false;
       }
-      if (hasDataType() != other.hasDataType()) return false;
-      if (hasDataType()) {
-        if (dataType_ != other.dataType_) return false;
-      }
       if (!getDataBodyCase().equals(other.getDataBodyCase())) return false;
       switch (dataBodyCase_) {
-        case 3:
+        case 2:
           if (!getHeartBeatReq()
               .equals(other.getHeartBeatReq())) return false;
           break;
-        case 4:
+        case 3:
           if (!getHeartBeatResp()
               .equals(other.getHeartBeatResp())) return false;
           break;
-        case 5:
+        case 4:
           if (!getC2CSendReq()
               .equals(other.getC2CSendReq())) return false;
           break;
+        case 5:
+          if (!getS2CNotifyMsg()
+              .equals(other.getS2CNotifyMsg())) return false;
+          break;
         case 6:
-          if (!getC2CPushResp()
-              .equals(other.getC2CPushResp())) return false;
+          if (!getAck()
+              .equals(other.getAck())) return false;
           break;
         case 0:
         default:
@@ -735,26 +642,26 @@ public final class ChatProtocol {
         hash = (37 * hash) + VERSION_FIELD_NUMBER;
         hash = (53 * hash) + getVersion();
       }
-      if (hasDataType()) {
-        hash = (37 * hash) + DATATYPE_FIELD_NUMBER;
-        hash = (53 * hash) + dataType_;
-      }
       switch (dataBodyCase_) {
-        case 3:
+        case 2:
           hash = (37 * hash) + HEARTBEATREQ_FIELD_NUMBER;
           hash = (53 * hash) + getHeartBeatReq().hashCode();
           break;
-        case 4:
+        case 3:
           hash = (37 * hash) + HEARTBEATRESP_FIELD_NUMBER;
           hash = (53 * hash) + getHeartBeatResp().hashCode();
           break;
-        case 5:
+        case 4:
           hash = (37 * hash) + C2CSENDREQ_FIELD_NUMBER;
           hash = (53 * hash) + getC2CSendReq().hashCode();
           break;
+        case 5:
+          hash = (37 * hash) + S2CNOTIFYMSG_FIELD_NUMBER;
+          hash = (53 * hash) + getS2CNotifyMsg().hashCode();
+          break;
         case 6:
-          hash = (37 * hash) + C2CPUSHRESP_FIELD_NUMBER;
-          hash = (53 * hash) + getC2CPushResp().hashCode();
+          hash = (37 * hash) + ACK_FIELD_NUMBER;
+          hash = (53 * hash) + getAck().hashCode();
           break;
         case 0:
         default:
@@ -894,8 +801,6 @@ public final class ChatProtocol {
         super.clear();
         version_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        dataType_ = 1;
-        bitField0_ = (bitField0_ & ~0x00000002);
         dataBodyCase_ = 0;
         dataBody_ = null;
         return this;
@@ -930,36 +835,39 @@ public final class ChatProtocol {
           result.version_ = version_;
           to_bitField0_ |= 0x00000001;
         }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.dataType_ = dataType_;
-        if (dataBodyCase_ == 3) {
+        if (dataBodyCase_ == 2) {
           if (heartBeatReqBuilder_ == null) {
             result.dataBody_ = dataBody_;
           } else {
             result.dataBody_ = heartBeatReqBuilder_.build();
           }
         }
-        if (dataBodyCase_ == 4) {
+        if (dataBodyCase_ == 3) {
           if (heartBeatRespBuilder_ == null) {
             result.dataBody_ = dataBody_;
           } else {
             result.dataBody_ = heartBeatRespBuilder_.build();
           }
         }
-        if (dataBodyCase_ == 5) {
+        if (dataBodyCase_ == 4) {
           if (c2CSendReqBuilder_ == null) {
             result.dataBody_ = dataBody_;
           } else {
             result.dataBody_ = c2CSendReqBuilder_.build();
           }
         }
-        if (dataBodyCase_ == 6) {
-          if (c2CPushRespBuilder_ == null) {
+        if (dataBodyCase_ == 5) {
+          if (s2CNotifyMsgBuilder_ == null) {
             result.dataBody_ = dataBody_;
           } else {
-            result.dataBody_ = c2CPushRespBuilder_.build();
+            result.dataBody_ = s2CNotifyMsgBuilder_.build();
+          }
+        }
+        if (dataBodyCase_ == 6) {
+          if (ackBuilder_ == null) {
+            result.dataBody_ = dataBody_;
+          } else {
+            result.dataBody_ = ackBuilder_.build();
           }
         }
         result.bitField0_ = to_bitField0_;
@@ -1015,9 +923,6 @@ public final class ChatProtocol {
         if (other.hasVersion()) {
           setVersion(other.getVersion());
         }
-        if (other.hasDataType()) {
-          setDataType(other.getDataType());
-        }
         switch (other.getDataBodyCase()) {
           case HEARTBEATREQ: {
             mergeHeartBeatReq(other.getHeartBeatReq());
@@ -1031,8 +936,12 @@ public final class ChatProtocol {
             mergeC2CSendReq(other.getC2CSendReq());
             break;
           }
-          case C2CPUSHRESP: {
-            mergeC2CPushResp(other.getC2CPushResp());
+          case S2CNOTIFYMSG: {
+            mergeS2CNotifyMsg(other.getS2CNotifyMsg());
+            break;
+          }
+          case ACK: {
+            mergeAck(other.getAck());
             break;
           }
           case DATABODY_NOT_SET: {
@@ -1047,9 +956,6 @@ public final class ChatProtocol {
       @java.lang.Override
       public final boolean isInitialized() {
         if (!hasVersion()) {
-          return false;
-        }
-        if (!hasDataType()) {
           return false;
         }
         if (hasHeartBeatReq()) {
@@ -1067,8 +973,13 @@ public final class ChatProtocol {
             return false;
           }
         }
-        if (hasC2CPushResp()) {
-          if (!getC2CPushResp().isInitialized()) {
+        if (hasS2CNotifyMsg()) {
+          if (!getS2CNotifyMsg().isInitialized()) {
+            return false;
+          }
+        }
+        if (hasAck()) {
+          if (!getAck().isInitialized()) {
             return false;
           }
         }
@@ -1149,79 +1060,36 @@ public final class ChatProtocol {
         return this;
       }
 
-      private int dataType_ = 1;
-      /**
-       * <code>required .ChatProtoPack.DataType dataType = 2;</code>
-       * @return Whether the dataType field is set.
-       */
-      @java.lang.Override public boolean hasDataType() {
-        return ((bitField0_ & 0x00000002) != 0);
-      }
-      /**
-       * <code>required .ChatProtoPack.DataType dataType = 2;</code>
-       * @return The dataType.
-       */
-      @java.lang.Override
-      public personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType getDataType() {
-        @SuppressWarnings("deprecation")
-        personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType result = personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType.valueOf(dataType_);
-        return result == null ? personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType.HeartBeatReqType : result;
-      }
-      /**
-       * <code>required .ChatProtoPack.DataType dataType = 2;</code>
-       * @param value The dataType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDataType(personal.fields.protocol.ChatProtocol.ChatProtoPack.DataType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000002;
-        dataType_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required .ChatProtoPack.DataType dataType = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDataType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        dataType_ = 1;
-        onChanged();
-        return this;
-      }
-
       private com.google.protobuf.SingleFieldBuilderV3<
           personal.fields.protocol.ChatProtocol.HeartBeatReq, personal.fields.protocol.ChatProtocol.HeartBeatReq.Builder, personal.fields.protocol.ChatProtocol.HeartBeatReqOrBuilder> heartBeatReqBuilder_;
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        * @return Whether the heartBeatReq field is set.
        */
       @java.lang.Override
       public boolean hasHeartBeatReq() {
-        return dataBodyCase_ == 3;
+        return dataBodyCase_ == 2;
       }
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        * @return The heartBeatReq.
        */
       @java.lang.Override
       public personal.fields.protocol.ChatProtocol.HeartBeatReq getHeartBeatReq() {
         if (heartBeatReqBuilder_ == null) {
-          if (dataBodyCase_ == 3) {
+          if (dataBodyCase_ == 2) {
             return (personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_;
           }
           return personal.fields.protocol.ChatProtocol.HeartBeatReq.getDefaultInstance();
         } else {
-          if (dataBodyCase_ == 3) {
+          if (dataBodyCase_ == 2) {
             return heartBeatReqBuilder_.getMessage();
           }
           return personal.fields.protocol.ChatProtocol.HeartBeatReq.getDefaultInstance();
         }
       }
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        */
       public Builder setHeartBeatReq(personal.fields.protocol.ChatProtocol.HeartBeatReq value) {
         if (heartBeatReqBuilder_ == null) {
@@ -1233,11 +1101,11 @@ public final class ChatProtocol {
         } else {
           heartBeatReqBuilder_.setMessage(value);
         }
-        dataBodyCase_ = 3;
+        dataBodyCase_ = 2;
         return this;
       }
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        */
       public Builder setHeartBeatReq(
           personal.fields.protocol.ChatProtocol.HeartBeatReq.Builder builderForValue) {
@@ -1247,15 +1115,15 @@ public final class ChatProtocol {
         } else {
           heartBeatReqBuilder_.setMessage(builderForValue.build());
         }
-        dataBodyCase_ = 3;
+        dataBodyCase_ = 2;
         return this;
       }
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        */
       public Builder mergeHeartBeatReq(personal.fields.protocol.ChatProtocol.HeartBeatReq value) {
         if (heartBeatReqBuilder_ == null) {
-          if (dataBodyCase_ == 3 &&
+          if (dataBodyCase_ == 2 &&
               dataBody_ != personal.fields.protocol.ChatProtocol.HeartBeatReq.getDefaultInstance()) {
             dataBody_ = personal.fields.protocol.ChatProtocol.HeartBeatReq.newBuilder((personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_)
                 .mergeFrom(value).buildPartial();
@@ -1264,27 +1132,27 @@ public final class ChatProtocol {
           }
           onChanged();
         } else {
-          if (dataBodyCase_ == 3) {
+          if (dataBodyCase_ == 2) {
             heartBeatReqBuilder_.mergeFrom(value);
           } else {
             heartBeatReqBuilder_.setMessage(value);
           }
         }
-        dataBodyCase_ = 3;
+        dataBodyCase_ = 2;
         return this;
       }
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        */
       public Builder clearHeartBeatReq() {
         if (heartBeatReqBuilder_ == null) {
-          if (dataBodyCase_ == 3) {
+          if (dataBodyCase_ == 2) {
             dataBodyCase_ = 0;
             dataBody_ = null;
             onChanged();
           }
         } else {
-          if (dataBodyCase_ == 3) {
+          if (dataBodyCase_ == 2) {
             dataBodyCase_ = 0;
             dataBody_ = null;
           }
@@ -1293,33 +1161,33 @@ public final class ChatProtocol {
         return this;
       }
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        */
       public personal.fields.protocol.ChatProtocol.HeartBeatReq.Builder getHeartBeatReqBuilder() {
         return getHeartBeatReqFieldBuilder().getBuilder();
       }
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        */
       @java.lang.Override
       public personal.fields.protocol.ChatProtocol.HeartBeatReqOrBuilder getHeartBeatReqOrBuilder() {
-        if ((dataBodyCase_ == 3) && (heartBeatReqBuilder_ != null)) {
+        if ((dataBodyCase_ == 2) && (heartBeatReqBuilder_ != null)) {
           return heartBeatReqBuilder_.getMessageOrBuilder();
         } else {
-          if (dataBodyCase_ == 3) {
+          if (dataBodyCase_ == 2) {
             return (personal.fields.protocol.ChatProtocol.HeartBeatReq) dataBody_;
           }
           return personal.fields.protocol.ChatProtocol.HeartBeatReq.getDefaultInstance();
         }
       }
       /**
-       * <code>.HeartBeatReq heartBeatReq = 3;</code>
+       * <code>.HeartBeatReq heartBeatReq = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           personal.fields.protocol.ChatProtocol.HeartBeatReq, personal.fields.protocol.ChatProtocol.HeartBeatReq.Builder, personal.fields.protocol.ChatProtocol.HeartBeatReqOrBuilder> 
           getHeartBeatReqFieldBuilder() {
         if (heartBeatReqBuilder_ == null) {
-          if (!(dataBodyCase_ == 3)) {
+          if (!(dataBodyCase_ == 2)) {
             dataBody_ = personal.fields.protocol.ChatProtocol.HeartBeatReq.getDefaultInstance();
           }
           heartBeatReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1329,7 +1197,7 @@ public final class ChatProtocol {
                   isClean());
           dataBody_ = null;
         }
-        dataBodyCase_ = 3;
+        dataBodyCase_ = 2;
         onChanged();;
         return heartBeatReqBuilder_;
       }
@@ -1337,33 +1205,33 @@ public final class ChatProtocol {
       private com.google.protobuf.SingleFieldBuilderV3<
           personal.fields.protocol.ChatProtocol.HeartBeatResp, personal.fields.protocol.ChatProtocol.HeartBeatResp.Builder, personal.fields.protocol.ChatProtocol.HeartBeatRespOrBuilder> heartBeatRespBuilder_;
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        * @return Whether the heartBeatResp field is set.
        */
       @java.lang.Override
       public boolean hasHeartBeatResp() {
-        return dataBodyCase_ == 4;
+        return dataBodyCase_ == 3;
       }
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        * @return The heartBeatResp.
        */
       @java.lang.Override
       public personal.fields.protocol.ChatProtocol.HeartBeatResp getHeartBeatResp() {
         if (heartBeatRespBuilder_ == null) {
-          if (dataBodyCase_ == 4) {
+          if (dataBodyCase_ == 3) {
             return (personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_;
           }
           return personal.fields.protocol.ChatProtocol.HeartBeatResp.getDefaultInstance();
         } else {
-          if (dataBodyCase_ == 4) {
+          if (dataBodyCase_ == 3) {
             return heartBeatRespBuilder_.getMessage();
           }
           return personal.fields.protocol.ChatProtocol.HeartBeatResp.getDefaultInstance();
         }
       }
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        */
       public Builder setHeartBeatResp(personal.fields.protocol.ChatProtocol.HeartBeatResp value) {
         if (heartBeatRespBuilder_ == null) {
@@ -1375,11 +1243,11 @@ public final class ChatProtocol {
         } else {
           heartBeatRespBuilder_.setMessage(value);
         }
-        dataBodyCase_ = 4;
+        dataBodyCase_ = 3;
         return this;
       }
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        */
       public Builder setHeartBeatResp(
           personal.fields.protocol.ChatProtocol.HeartBeatResp.Builder builderForValue) {
@@ -1389,15 +1257,15 @@ public final class ChatProtocol {
         } else {
           heartBeatRespBuilder_.setMessage(builderForValue.build());
         }
-        dataBodyCase_ = 4;
+        dataBodyCase_ = 3;
         return this;
       }
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        */
       public Builder mergeHeartBeatResp(personal.fields.protocol.ChatProtocol.HeartBeatResp value) {
         if (heartBeatRespBuilder_ == null) {
-          if (dataBodyCase_ == 4 &&
+          if (dataBodyCase_ == 3 &&
               dataBody_ != personal.fields.protocol.ChatProtocol.HeartBeatResp.getDefaultInstance()) {
             dataBody_ = personal.fields.protocol.ChatProtocol.HeartBeatResp.newBuilder((personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_)
                 .mergeFrom(value).buildPartial();
@@ -1406,27 +1274,27 @@ public final class ChatProtocol {
           }
           onChanged();
         } else {
-          if (dataBodyCase_ == 4) {
+          if (dataBodyCase_ == 3) {
             heartBeatRespBuilder_.mergeFrom(value);
           } else {
             heartBeatRespBuilder_.setMessage(value);
           }
         }
-        dataBodyCase_ = 4;
+        dataBodyCase_ = 3;
         return this;
       }
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        */
       public Builder clearHeartBeatResp() {
         if (heartBeatRespBuilder_ == null) {
-          if (dataBodyCase_ == 4) {
+          if (dataBodyCase_ == 3) {
             dataBodyCase_ = 0;
             dataBody_ = null;
             onChanged();
           }
         } else {
-          if (dataBodyCase_ == 4) {
+          if (dataBodyCase_ == 3) {
             dataBodyCase_ = 0;
             dataBody_ = null;
           }
@@ -1435,33 +1303,33 @@ public final class ChatProtocol {
         return this;
       }
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        */
       public personal.fields.protocol.ChatProtocol.HeartBeatResp.Builder getHeartBeatRespBuilder() {
         return getHeartBeatRespFieldBuilder().getBuilder();
       }
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        */
       @java.lang.Override
       public personal.fields.protocol.ChatProtocol.HeartBeatRespOrBuilder getHeartBeatRespOrBuilder() {
-        if ((dataBodyCase_ == 4) && (heartBeatRespBuilder_ != null)) {
+        if ((dataBodyCase_ == 3) && (heartBeatRespBuilder_ != null)) {
           return heartBeatRespBuilder_.getMessageOrBuilder();
         } else {
-          if (dataBodyCase_ == 4) {
+          if (dataBodyCase_ == 3) {
             return (personal.fields.protocol.ChatProtocol.HeartBeatResp) dataBody_;
           }
           return personal.fields.protocol.ChatProtocol.HeartBeatResp.getDefaultInstance();
         }
       }
       /**
-       * <code>.HeartBeatResp heartBeatResp = 4;</code>
+       * <code>.HeartBeatResp heartBeatResp = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           personal.fields.protocol.ChatProtocol.HeartBeatResp, personal.fields.protocol.ChatProtocol.HeartBeatResp.Builder, personal.fields.protocol.ChatProtocol.HeartBeatRespOrBuilder> 
           getHeartBeatRespFieldBuilder() {
         if (heartBeatRespBuilder_ == null) {
-          if (!(dataBodyCase_ == 4)) {
+          if (!(dataBodyCase_ == 3)) {
             dataBody_ = personal.fields.protocol.ChatProtocol.HeartBeatResp.getDefaultInstance();
           }
           heartBeatRespBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1471,7 +1339,7 @@ public final class ChatProtocol {
                   isClean());
           dataBody_ = null;
         }
-        dataBodyCase_ = 4;
+        dataBodyCase_ = 3;
         onChanged();;
         return heartBeatRespBuilder_;
       }
@@ -1479,33 +1347,33 @@ public final class ChatProtocol {
       private com.google.protobuf.SingleFieldBuilderV3<
           personal.fields.protocol.ChatProtocol.C2CSendReq, personal.fields.protocol.ChatProtocol.C2CSendReq.Builder, personal.fields.protocol.ChatProtocol.C2CSendReqOrBuilder> c2CSendReqBuilder_;
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        * @return Whether the c2cSendReq field is set.
        */
       @java.lang.Override
       public boolean hasC2CSendReq() {
-        return dataBodyCase_ == 5;
+        return dataBodyCase_ == 4;
       }
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        * @return The c2cSendReq.
        */
       @java.lang.Override
       public personal.fields.protocol.ChatProtocol.C2CSendReq getC2CSendReq() {
         if (c2CSendReqBuilder_ == null) {
-          if (dataBodyCase_ == 5) {
+          if (dataBodyCase_ == 4) {
             return (personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_;
           }
           return personal.fields.protocol.ChatProtocol.C2CSendReq.getDefaultInstance();
         } else {
-          if (dataBodyCase_ == 5) {
+          if (dataBodyCase_ == 4) {
             return c2CSendReqBuilder_.getMessage();
           }
           return personal.fields.protocol.ChatProtocol.C2CSendReq.getDefaultInstance();
         }
       }
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        */
       public Builder setC2CSendReq(personal.fields.protocol.ChatProtocol.C2CSendReq value) {
         if (c2CSendReqBuilder_ == null) {
@@ -1517,11 +1385,11 @@ public final class ChatProtocol {
         } else {
           c2CSendReqBuilder_.setMessage(value);
         }
-        dataBodyCase_ = 5;
+        dataBodyCase_ = 4;
         return this;
       }
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        */
       public Builder setC2CSendReq(
           personal.fields.protocol.ChatProtocol.C2CSendReq.Builder builderForValue) {
@@ -1531,15 +1399,15 @@ public final class ChatProtocol {
         } else {
           c2CSendReqBuilder_.setMessage(builderForValue.build());
         }
-        dataBodyCase_ = 5;
+        dataBodyCase_ = 4;
         return this;
       }
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        */
       public Builder mergeC2CSendReq(personal.fields.protocol.ChatProtocol.C2CSendReq value) {
         if (c2CSendReqBuilder_ == null) {
-          if (dataBodyCase_ == 5 &&
+          if (dataBodyCase_ == 4 &&
               dataBody_ != personal.fields.protocol.ChatProtocol.C2CSendReq.getDefaultInstance()) {
             dataBody_ = personal.fields.protocol.ChatProtocol.C2CSendReq.newBuilder((personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_)
                 .mergeFrom(value).buildPartial();
@@ -1548,27 +1416,27 @@ public final class ChatProtocol {
           }
           onChanged();
         } else {
-          if (dataBodyCase_ == 5) {
+          if (dataBodyCase_ == 4) {
             c2CSendReqBuilder_.mergeFrom(value);
           } else {
             c2CSendReqBuilder_.setMessage(value);
           }
         }
-        dataBodyCase_ = 5;
+        dataBodyCase_ = 4;
         return this;
       }
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        */
       public Builder clearC2CSendReq() {
         if (c2CSendReqBuilder_ == null) {
-          if (dataBodyCase_ == 5) {
+          if (dataBodyCase_ == 4) {
             dataBodyCase_ = 0;
             dataBody_ = null;
             onChanged();
           }
         } else {
-          if (dataBodyCase_ == 5) {
+          if (dataBodyCase_ == 4) {
             dataBodyCase_ = 0;
             dataBody_ = null;
           }
@@ -1577,33 +1445,33 @@ public final class ChatProtocol {
         return this;
       }
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        */
       public personal.fields.protocol.ChatProtocol.C2CSendReq.Builder getC2CSendReqBuilder() {
         return getC2CSendReqFieldBuilder().getBuilder();
       }
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        */
       @java.lang.Override
       public personal.fields.protocol.ChatProtocol.C2CSendReqOrBuilder getC2CSendReqOrBuilder() {
-        if ((dataBodyCase_ == 5) && (c2CSendReqBuilder_ != null)) {
+        if ((dataBodyCase_ == 4) && (c2CSendReqBuilder_ != null)) {
           return c2CSendReqBuilder_.getMessageOrBuilder();
         } else {
-          if (dataBodyCase_ == 5) {
+          if (dataBodyCase_ == 4) {
             return (personal.fields.protocol.ChatProtocol.C2CSendReq) dataBody_;
           }
           return personal.fields.protocol.ChatProtocol.C2CSendReq.getDefaultInstance();
         }
       }
       /**
-       * <code>.C2CSendReq c2cSendReq = 5;</code>
+       * <code>.C2CSendReq c2cSendReq = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           personal.fields.protocol.ChatProtocol.C2CSendReq, personal.fields.protocol.ChatProtocol.C2CSendReq.Builder, personal.fields.protocol.ChatProtocol.C2CSendReqOrBuilder> 
           getC2CSendReqFieldBuilder() {
         if (c2CSendReqBuilder_ == null) {
-          if (!(dataBodyCase_ == 5)) {
+          if (!(dataBodyCase_ == 4)) {
             dataBody_ = personal.fields.protocol.ChatProtocol.C2CSendReq.getDefaultInstance();
           }
           c2CSendReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1613,77 +1481,219 @@ public final class ChatProtocol {
                   isClean());
           dataBody_ = null;
         }
-        dataBodyCase_ = 5;
+        dataBodyCase_ = 4;
         onChanged();;
         return c2CSendReqBuilder_;
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          personal.fields.protocol.ChatProtocol.C2CPushResp, personal.fields.protocol.ChatProtocol.C2CPushResp.Builder, personal.fields.protocol.ChatProtocol.C2CPushRespOrBuilder> c2CPushRespBuilder_;
+          personal.fields.protocol.ChatProtocol.S2CNotifyMsg, personal.fields.protocol.ChatProtocol.S2CNotifyMsg.Builder, personal.fields.protocol.ChatProtocol.S2CNotifyMsgOrBuilder> s2CNotifyMsgBuilder_;
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
-       * @return Whether the c2cPushResp field is set.
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+       * @return Whether the s2cNotifyMsg field is set.
        */
       @java.lang.Override
-      public boolean hasC2CPushResp() {
-        return dataBodyCase_ == 6;
+      public boolean hasS2CNotifyMsg() {
+        return dataBodyCase_ == 5;
       }
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
-       * @return The c2cPushResp.
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+       * @return The s2cNotifyMsg.
        */
       @java.lang.Override
-      public personal.fields.protocol.ChatProtocol.C2CPushResp getC2CPushResp() {
-        if (c2CPushRespBuilder_ == null) {
-          if (dataBodyCase_ == 6) {
-            return (personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_;
+      public personal.fields.protocol.ChatProtocol.S2CNotifyMsg getS2CNotifyMsg() {
+        if (s2CNotifyMsgBuilder_ == null) {
+          if (dataBodyCase_ == 5) {
+            return (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_;
           }
-          return personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance();
+          return personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance();
         } else {
-          if (dataBodyCase_ == 6) {
-            return c2CPushRespBuilder_.getMessage();
+          if (dataBodyCase_ == 5) {
+            return s2CNotifyMsgBuilder_.getMessage();
           }
-          return personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance();
+          return personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance();
         }
       }
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
        */
-      public Builder setC2CPushResp(personal.fields.protocol.ChatProtocol.C2CPushResp value) {
-        if (c2CPushRespBuilder_ == null) {
+      public Builder setS2CNotifyMsg(personal.fields.protocol.ChatProtocol.S2CNotifyMsg value) {
+        if (s2CNotifyMsgBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           dataBody_ = value;
           onChanged();
         } else {
-          c2CPushRespBuilder_.setMessage(value);
+          s2CNotifyMsgBuilder_.setMessage(value);
         }
-        dataBodyCase_ = 6;
+        dataBodyCase_ = 5;
         return this;
       }
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
        */
-      public Builder setC2CPushResp(
-          personal.fields.protocol.ChatProtocol.C2CPushResp.Builder builderForValue) {
-        if (c2CPushRespBuilder_ == null) {
+      public Builder setS2CNotifyMsg(
+          personal.fields.protocol.ChatProtocol.S2CNotifyMsg.Builder builderForValue) {
+        if (s2CNotifyMsgBuilder_ == null) {
           dataBody_ = builderForValue.build();
           onChanged();
         } else {
-          c2CPushRespBuilder_.setMessage(builderForValue.build());
+          s2CNotifyMsgBuilder_.setMessage(builderForValue.build());
+        }
+        dataBodyCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+       */
+      public Builder mergeS2CNotifyMsg(personal.fields.protocol.ChatProtocol.S2CNotifyMsg value) {
+        if (s2CNotifyMsgBuilder_ == null) {
+          if (dataBodyCase_ == 5 &&
+              dataBody_ != personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance()) {
+            dataBody_ = personal.fields.protocol.ChatProtocol.S2CNotifyMsg.newBuilder((personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            dataBody_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataBodyCase_ == 5) {
+            s2CNotifyMsgBuilder_.mergeFrom(value);
+          } else {
+            s2CNotifyMsgBuilder_.setMessage(value);
+          }
+        }
+        dataBodyCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+       */
+      public Builder clearS2CNotifyMsg() {
+        if (s2CNotifyMsgBuilder_ == null) {
+          if (dataBodyCase_ == 5) {
+            dataBodyCase_ = 0;
+            dataBody_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataBodyCase_ == 5) {
+            dataBodyCase_ = 0;
+            dataBody_ = null;
+          }
+          s2CNotifyMsgBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+       */
+      public personal.fields.protocol.ChatProtocol.S2CNotifyMsg.Builder getS2CNotifyMsgBuilder() {
+        return getS2CNotifyMsgFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+       */
+      @java.lang.Override
+      public personal.fields.protocol.ChatProtocol.S2CNotifyMsgOrBuilder getS2CNotifyMsgOrBuilder() {
+        if ((dataBodyCase_ == 5) && (s2CNotifyMsgBuilder_ != null)) {
+          return s2CNotifyMsgBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataBodyCase_ == 5) {
+            return (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_;
+          }
+          return personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.S2CNotifyMsg s2cNotifyMsg = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          personal.fields.protocol.ChatProtocol.S2CNotifyMsg, personal.fields.protocol.ChatProtocol.S2CNotifyMsg.Builder, personal.fields.protocol.ChatProtocol.S2CNotifyMsgOrBuilder> 
+          getS2CNotifyMsgFieldBuilder() {
+        if (s2CNotifyMsgBuilder_ == null) {
+          if (!(dataBodyCase_ == 5)) {
+            dataBody_ = personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance();
+          }
+          s2CNotifyMsgBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              personal.fields.protocol.ChatProtocol.S2CNotifyMsg, personal.fields.protocol.ChatProtocol.S2CNotifyMsg.Builder, personal.fields.protocol.ChatProtocol.S2CNotifyMsgOrBuilder>(
+                  (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) dataBody_,
+                  getParentForChildren(),
+                  isClean());
+          dataBody_ = null;
+        }
+        dataBodyCase_ = 5;
+        onChanged();;
+        return s2CNotifyMsgBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          personal.fields.protocol.ChatProtocol.ACK, personal.fields.protocol.ChatProtocol.ACK.Builder, personal.fields.protocol.ChatProtocol.ACKOrBuilder> ackBuilder_;
+      /**
+       * <code>.ACK ack = 6;</code>
+       * @return Whether the ack field is set.
+       */
+      @java.lang.Override
+      public boolean hasAck() {
+        return dataBodyCase_ == 6;
+      }
+      /**
+       * <code>.ACK ack = 6;</code>
+       * @return The ack.
+       */
+      @java.lang.Override
+      public personal.fields.protocol.ChatProtocol.ACK getAck() {
+        if (ackBuilder_ == null) {
+          if (dataBodyCase_ == 6) {
+            return (personal.fields.protocol.ChatProtocol.ACK) dataBody_;
+          }
+          return personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance();
+        } else {
+          if (dataBodyCase_ == 6) {
+            return ackBuilder_.getMessage();
+          }
+          return personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.ACK ack = 6;</code>
+       */
+      public Builder setAck(personal.fields.protocol.ChatProtocol.ACK value) {
+        if (ackBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          dataBody_ = value;
+          onChanged();
+        } else {
+          ackBuilder_.setMessage(value);
         }
         dataBodyCase_ = 6;
         return this;
       }
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
+       * <code>.ACK ack = 6;</code>
        */
-      public Builder mergeC2CPushResp(personal.fields.protocol.ChatProtocol.C2CPushResp value) {
-        if (c2CPushRespBuilder_ == null) {
+      public Builder setAck(
+          personal.fields.protocol.ChatProtocol.ACK.Builder builderForValue) {
+        if (ackBuilder_ == null) {
+          dataBody_ = builderForValue.build();
+          onChanged();
+        } else {
+          ackBuilder_.setMessage(builderForValue.build());
+        }
+        dataBodyCase_ = 6;
+        return this;
+      }
+      /**
+       * <code>.ACK ack = 6;</code>
+       */
+      public Builder mergeAck(personal.fields.protocol.ChatProtocol.ACK value) {
+        if (ackBuilder_ == null) {
           if (dataBodyCase_ == 6 &&
-              dataBody_ != personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance()) {
-            dataBody_ = personal.fields.protocol.ChatProtocol.C2CPushResp.newBuilder((personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_)
+              dataBody_ != personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance()) {
+            dataBody_ = personal.fields.protocol.ChatProtocol.ACK.newBuilder((personal.fields.protocol.ChatProtocol.ACK) dataBody_)
                 .mergeFrom(value).buildPartial();
           } else {
             dataBody_ = value;
@@ -1691,19 +1701,19 @@ public final class ChatProtocol {
           onChanged();
         } else {
           if (dataBodyCase_ == 6) {
-            c2CPushRespBuilder_.mergeFrom(value);
+            ackBuilder_.mergeFrom(value);
           } else {
-            c2CPushRespBuilder_.setMessage(value);
+            ackBuilder_.setMessage(value);
           }
         }
         dataBodyCase_ = 6;
         return this;
       }
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
+       * <code>.ACK ack = 6;</code>
        */
-      public Builder clearC2CPushResp() {
-        if (c2CPushRespBuilder_ == null) {
+      public Builder clearAck() {
+        if (ackBuilder_ == null) {
           if (dataBodyCase_ == 6) {
             dataBodyCase_ = 0;
             dataBody_ = null;
@@ -1714,50 +1724,50 @@ public final class ChatProtocol {
             dataBodyCase_ = 0;
             dataBody_ = null;
           }
-          c2CPushRespBuilder_.clear();
+          ackBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
+       * <code>.ACK ack = 6;</code>
        */
-      public personal.fields.protocol.ChatProtocol.C2CPushResp.Builder getC2CPushRespBuilder() {
-        return getC2CPushRespFieldBuilder().getBuilder();
+      public personal.fields.protocol.ChatProtocol.ACK.Builder getAckBuilder() {
+        return getAckFieldBuilder().getBuilder();
       }
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
+       * <code>.ACK ack = 6;</code>
        */
       @java.lang.Override
-      public personal.fields.protocol.ChatProtocol.C2CPushRespOrBuilder getC2CPushRespOrBuilder() {
-        if ((dataBodyCase_ == 6) && (c2CPushRespBuilder_ != null)) {
-          return c2CPushRespBuilder_.getMessageOrBuilder();
+      public personal.fields.protocol.ChatProtocol.ACKOrBuilder getAckOrBuilder() {
+        if ((dataBodyCase_ == 6) && (ackBuilder_ != null)) {
+          return ackBuilder_.getMessageOrBuilder();
         } else {
           if (dataBodyCase_ == 6) {
-            return (personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_;
+            return (personal.fields.protocol.ChatProtocol.ACK) dataBody_;
           }
-          return personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance();
+          return personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance();
         }
       }
       /**
-       * <code>.C2CPushResp c2cPushResp = 6;</code>
+       * <code>.ACK ack = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          personal.fields.protocol.ChatProtocol.C2CPushResp, personal.fields.protocol.ChatProtocol.C2CPushResp.Builder, personal.fields.protocol.ChatProtocol.C2CPushRespOrBuilder> 
-          getC2CPushRespFieldBuilder() {
-        if (c2CPushRespBuilder_ == null) {
+          personal.fields.protocol.ChatProtocol.ACK, personal.fields.protocol.ChatProtocol.ACK.Builder, personal.fields.protocol.ChatProtocol.ACKOrBuilder> 
+          getAckFieldBuilder() {
+        if (ackBuilder_ == null) {
           if (!(dataBodyCase_ == 6)) {
-            dataBody_ = personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance();
+            dataBody_ = personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance();
           }
-          c2CPushRespBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              personal.fields.protocol.ChatProtocol.C2CPushResp, personal.fields.protocol.ChatProtocol.C2CPushResp.Builder, personal.fields.protocol.ChatProtocol.C2CPushRespOrBuilder>(
-                  (personal.fields.protocol.ChatProtocol.C2CPushResp) dataBody_,
+          ackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              personal.fields.protocol.ChatProtocol.ACK, personal.fields.protocol.ChatProtocol.ACK.Builder, personal.fields.protocol.ChatProtocol.ACKOrBuilder>(
+                  (personal.fields.protocol.ChatProtocol.ACK) dataBody_,
                   getParentForChildren(),
                   isClean());
           dataBody_ = null;
         }
         dataBodyCase_ = 6;
         onChanged();;
-        return c2CPushRespBuilder_;
+        return ackBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -3495,6 +3505,17 @@ public final class ChatProtocol {
      */
     com.google.protobuf.ByteString
         getMsgBytes();
+
+    /**
+     * <code>required int32 seq = 5;</code>
+     * @return Whether the seq field is set.
+     */
+    boolean hasSeq();
+    /**
+     * <code>required int32 seq = 5;</code>
+     * @return The seq.
+     */
+    int getSeq();
   }
   /**
    * Protobuf type {@code C2CSendReq}
@@ -3562,6 +3583,11 @@ public final class ChatProtocol {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000008;
               msg_ = bs;
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              seq_ = input.readInt32();
               break;
             }
             default: {
@@ -3827,6 +3853,25 @@ public final class ChatProtocol {
       }
     }
 
+    public static final int SEQ_FIELD_NUMBER = 5;
+    private int seq_;
+    /**
+     * <code>required int32 seq = 5;</code>
+     * @return Whether the seq field is set.
+     */
+    @java.lang.Override
+    public boolean hasSeq() {
+      return ((bitField0_ & 0x00000010) != 0);
+    }
+    /**
+     * <code>required int32 seq = 5;</code>
+     * @return The seq.
+     */
+    @java.lang.Override
+    public int getSeq() {
+      return seq_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3850,6 +3895,10 @@ public final class ChatProtocol {
         memoizedIsInitialized = 0;
         return false;
       }
+      if (!hasSeq()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -3868,6 +3917,9 @@ public final class ChatProtocol {
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, msg_);
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        output.writeInt32(5, seq_);
       }
       unknownFields.writeTo(output);
     }
@@ -3892,6 +3944,10 @@ public final class ChatProtocol {
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, msg_);
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, seq_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3928,6 +3984,11 @@ public final class ChatProtocol {
         if (!getMsg()
             .equals(other.getMsg())) return false;
       }
+      if (hasSeq() != other.hasSeq()) return false;
+      if (hasSeq()) {
+        if (getSeq()
+            != other.getSeq()) return false;
+      }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3954,6 +4015,10 @@ public final class ChatProtocol {
       if (hasMsg()) {
         hash = (37 * hash) + MSG_FIELD_NUMBER;
         hash = (53 * hash) + getMsg().hashCode();
+      }
+      if (hasSeq()) {
+        hash = (37 * hash) + SEQ_FIELD_NUMBER;
+        hash = (53 * hash) + getSeq();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -4096,6 +4161,8 @@ public final class ChatProtocol {
         bitField0_ = (bitField0_ & ~0x00000004);
         msg_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
+        seq_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -4140,6 +4207,10 @@ public final class ChatProtocol {
           to_bitField0_ |= 0x00000008;
         }
         result.msg_ = msg_;
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.seq_ = seq_;
+          to_bitField0_ |= 0x00000010;
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4203,6 +4274,9 @@ public final class ChatProtocol {
           msg_ = other.msg_;
           onChanged();
         }
+        if (other.hasSeq()) {
+          setSeq(other.getSeq());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -4220,6 +4294,9 @@ public final class ChatProtocol {
           return false;
         }
         if (!hasMsg()) {
+          return false;
+        }
+        if (!hasSeq()) {
           return false;
         }
         return true;
@@ -4445,6 +4522,45 @@ public final class ChatProtocol {
         onChanged();
         return this;
       }
+
+      private int seq_ ;
+      /**
+       * <code>required int32 seq = 5;</code>
+       * @return Whether the seq field is set.
+       */
+      @java.lang.Override
+      public boolean hasSeq() {
+        return ((bitField0_ & 0x00000010) != 0);
+      }
+      /**
+       * <code>required int32 seq = 5;</code>
+       * @return The seq.
+       */
+      @java.lang.Override
+      public int getSeq() {
+        return seq_;
+      }
+      /**
+       * <code>required int32 seq = 5;</code>
+       * @param value The seq to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSeq(int value) {
+        bitField0_ |= 0x00000010;
+        seq_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 seq = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSeq() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        seq_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4498,8 +4614,8 @@ public final class ChatProtocol {
 
   }
 
-  public interface C2CPushRespOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:C2CPushResp)
+  public interface S2CNotifyMsgOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:S2CNotifyMsg)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -4525,23 +4641,15 @@ public final class ChatProtocol {
     int getFromId();
 
     /**
-     * <pre>
-     * 服务器对消息的生成的 id
-     * </pre>
-     *
-     * <code>required int32 msgId = 3;</code>
-     * @return Whether the msgId field is set.
+     * <code>required int32 toId = 3;</code>
+     * @return Whether the toId field is set.
      */
-    boolean hasMsgId();
+    boolean hasToId();
     /**
-     * <pre>
-     * 服务器对消息的生成的 id
-     * </pre>
-     *
-     * <code>required int32 msgId = 3;</code>
-     * @return The msgId.
+     * <code>required int32 toId = 3;</code>
+     * @return The toId.
      */
-    int getMsgId();
+    int getToId();
 
     /**
      * <code>required string msg = 4;</code>
@@ -4559,20 +4667,42 @@ public final class ChatProtocol {
      */
     com.google.protobuf.ByteString
         getMsgBytes();
+
+    /**
+     * <code>required int32 msgId = 5;</code>
+     * @return Whether the msgId field is set.
+     */
+    boolean hasMsgId();
+    /**
+     * <code>required int32 msgId = 5;</code>
+     * @return The msgId.
+     */
+    int getMsgId();
+
+    /**
+     * <code>required int32 seq = 6;</code>
+     * @return Whether the seq field is set.
+     */
+    boolean hasSeq();
+    /**
+     * <code>required int32 seq = 6;</code>
+     * @return The seq.
+     */
+    int getSeq();
   }
   /**
-   * Protobuf type {@code C2CPushResp}
+   * Protobuf type {@code S2CNotifyMsg}
    */
-  public static final class C2CPushResp extends
+  public static final class S2CNotifyMsg extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:C2CPushResp)
-      C2CPushRespOrBuilder {
+      // @@protoc_insertion_point(message_implements:S2CNotifyMsg)
+      S2CNotifyMsgOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use C2CPushResp.newBuilder() to construct.
-    private C2CPushResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use S2CNotifyMsg.newBuilder() to construct.
+    private S2CNotifyMsg(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private C2CPushResp() {
+    private S2CNotifyMsg() {
       msg_ = "";
     }
 
@@ -4580,7 +4710,7 @@ public final class ChatProtocol {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new C2CPushResp();
+      return new S2CNotifyMsg();
     }
 
     @java.lang.Override
@@ -4588,7 +4718,7 @@ public final class ChatProtocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private C2CPushResp(
+    private S2CNotifyMsg(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4619,13 +4749,23 @@ public final class ChatProtocol {
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              msgId_ = input.readInt32();
+              toId_ = input.readInt32();
               break;
             }
             case 34: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000008;
               msg_ = bs;
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              msgId_ = input.readInt32();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              seq_ = input.readInt32();
               break;
             }
             default: {
@@ -4651,15 +4791,138 @@ public final class ChatProtocol {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return personal.fields.protocol.ChatProtocol.internal_static_C2CPushResp_descriptor;
+      return personal.fields.protocol.ChatProtocol.internal_static_S2CNotifyMsg_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return personal.fields.protocol.ChatProtocol.internal_static_C2CPushResp_fieldAccessorTable
+      return personal.fields.protocol.ChatProtocol.internal_static_S2CNotifyMsg_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              personal.fields.protocol.ChatProtocol.C2CPushResp.class, personal.fields.protocol.ChatProtocol.C2CPushResp.Builder.class);
+              personal.fields.protocol.ChatProtocol.S2CNotifyMsg.class, personal.fields.protocol.ChatProtocol.S2CNotifyMsg.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code S2CNotifyMsg.type}
+     */
+    public enum type
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>text = 0;</code>
+       */
+      text(0),
+      /**
+       * <code>pic = 1;</code>
+       */
+      pic(1),
+      /**
+       * <code>audio = 2;</code>
+       */
+      audio(2),
+      /**
+       * <code>video = 3;</code>
+       */
+      video(3),
+      /**
+       * <code>file = 4;</code>
+       */
+      file(4),
+      ;
+
+      /**
+       * <code>text = 0;</code>
+       */
+      public static final int text_VALUE = 0;
+      /**
+       * <code>pic = 1;</code>
+       */
+      public static final int pic_VALUE = 1;
+      /**
+       * <code>audio = 2;</code>
+       */
+      public static final int audio_VALUE = 2;
+      /**
+       * <code>video = 3;</code>
+       */
+      public static final int video_VALUE = 3;
+      /**
+       * <code>file = 4;</code>
+       */
+      public static final int file_VALUE = 4;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static type valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static type forNumber(int value) {
+        switch (value) {
+          case 0: return text;
+          case 1: return pic;
+          case 2: return audio;
+          case 3: return video;
+          case 4: return file;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<type>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          type> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<type>() {
+              public type findValueByNumber(int number) {
+                return type.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final type[] VALUES = values();
+
+      public static type valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private type(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:S2CNotifyMsg.type)
     }
 
     private int bitField0_;
@@ -4701,31 +4964,23 @@ public final class ChatProtocol {
       return fromId_;
     }
 
-    public static final int MSGID_FIELD_NUMBER = 3;
-    private int msgId_;
+    public static final int TOID_FIELD_NUMBER = 3;
+    private int toId_;
     /**
-     * <pre>
-     * 服务器对消息的生成的 id
-     * </pre>
-     *
-     * <code>required int32 msgId = 3;</code>
-     * @return Whether the msgId field is set.
+     * <code>required int32 toId = 3;</code>
+     * @return Whether the toId field is set.
      */
     @java.lang.Override
-    public boolean hasMsgId() {
+    public boolean hasToId() {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <pre>
-     * 服务器对消息的生成的 id
-     * </pre>
-     *
-     * <code>required int32 msgId = 3;</code>
-     * @return The msgId.
+     * <code>required int32 toId = 3;</code>
+     * @return The toId.
      */
     @java.lang.Override
-    public int getMsgId() {
-      return msgId_;
+    public int getToId() {
+      return toId_;
     }
 
     public static final int MSG_FIELD_NUMBER = 4;
@@ -4776,6 +5031,44 @@ public final class ChatProtocol {
       }
     }
 
+    public static final int MSGID_FIELD_NUMBER = 5;
+    private int msgId_;
+    /**
+     * <code>required int32 msgId = 5;</code>
+     * @return Whether the msgId field is set.
+     */
+    @java.lang.Override
+    public boolean hasMsgId() {
+      return ((bitField0_ & 0x00000010) != 0);
+    }
+    /**
+     * <code>required int32 msgId = 5;</code>
+     * @return The msgId.
+     */
+    @java.lang.Override
+    public int getMsgId() {
+      return msgId_;
+    }
+
+    public static final int SEQ_FIELD_NUMBER = 6;
+    private int seq_;
+    /**
+     * <code>required int32 seq = 6;</code>
+     * @return Whether the seq field is set.
+     */
+    @java.lang.Override
+    public boolean hasSeq() {
+      return ((bitField0_ & 0x00000020) != 0);
+    }
+    /**
+     * <code>required int32 seq = 6;</code>
+     * @return The seq.
+     */
+    @java.lang.Override
+    public int getSeq() {
+      return seq_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4791,11 +5084,19 @@ public final class ChatProtocol {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasMsgId()) {
+      if (!hasToId()) {
         memoizedIsInitialized = 0;
         return false;
       }
       if (!hasMsg()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasMsgId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasSeq()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -4813,10 +5114,16 @@ public final class ChatProtocol {
         output.writeInt32(2, fromId_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeInt32(3, msgId_);
+        output.writeInt32(3, toId_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, msg_);
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        output.writeInt32(5, msgId_);
+      }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        output.writeInt32(6, seq_);
       }
       unknownFields.writeTo(output);
     }
@@ -4837,10 +5144,18 @@ public final class ChatProtocol {
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, msgId_);
+          .computeInt32Size(3, toId_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, msg_);
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, msgId_);
+      }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, seq_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4852,10 +5167,10 @@ public final class ChatProtocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof personal.fields.protocol.ChatProtocol.C2CPushResp)) {
+      if (!(obj instanceof personal.fields.protocol.ChatProtocol.S2CNotifyMsg)) {
         return super.equals(obj);
       }
-      personal.fields.protocol.ChatProtocol.C2CPushResp other = (personal.fields.protocol.ChatProtocol.C2CPushResp) obj;
+      personal.fields.protocol.ChatProtocol.S2CNotifyMsg other = (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) obj;
 
       if (hasVersion() != other.hasVersion()) return false;
       if (hasVersion()) {
@@ -4867,15 +5182,25 @@ public final class ChatProtocol {
         if (getFromId()
             != other.getFromId()) return false;
       }
-      if (hasMsgId() != other.hasMsgId()) return false;
-      if (hasMsgId()) {
-        if (getMsgId()
-            != other.getMsgId()) return false;
+      if (hasToId() != other.hasToId()) return false;
+      if (hasToId()) {
+        if (getToId()
+            != other.getToId()) return false;
       }
       if (hasMsg() != other.hasMsg()) return false;
       if (hasMsg()) {
         if (!getMsg()
             .equals(other.getMsg())) return false;
+      }
+      if (hasMsgId() != other.hasMsgId()) return false;
+      if (hasMsgId()) {
+        if (getMsgId()
+            != other.getMsgId()) return false;
+      }
+      if (hasSeq() != other.hasSeq()) return false;
+      if (hasSeq()) {
+        if (getSeq()
+            != other.getSeq()) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -4896,82 +5221,90 @@ public final class ChatProtocol {
         hash = (37 * hash) + FROMID_FIELD_NUMBER;
         hash = (53 * hash) + getFromId();
       }
-      if (hasMsgId()) {
-        hash = (37 * hash) + MSGID_FIELD_NUMBER;
-        hash = (53 * hash) + getMsgId();
+      if (hasToId()) {
+        hash = (37 * hash) + TOID_FIELD_NUMBER;
+        hash = (53 * hash) + getToId();
       }
       if (hasMsg()) {
         hash = (37 * hash) + MSG_FIELD_NUMBER;
         hash = (53 * hash) + getMsg().hashCode();
+      }
+      if (hasMsgId()) {
+        hash = (37 * hash) + MSGID_FIELD_NUMBER;
+        hash = (53 * hash) + getMsgId();
+      }
+      if (hasSeq()) {
+        hash = (37 * hash) + SEQ_FIELD_NUMBER;
+        hash = (53 * hash) + getSeq();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(byte[] data)
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(java.io.InputStream input)
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseDelimitedFrom(java.io.InputStream input)
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseDelimitedFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp parseFrom(
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4984,7 +5317,7 @@ public final class ChatProtocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(personal.fields.protocol.ChatProtocol.C2CPushResp prototype) {
+    public static Builder newBuilder(personal.fields.protocol.ChatProtocol.S2CNotifyMsg prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -5000,26 +5333,26 @@ public final class ChatProtocol {
       return builder;
     }
     /**
-     * Protobuf type {@code C2CPushResp}
+     * Protobuf type {@code S2CNotifyMsg}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:C2CPushResp)
-        personal.fields.protocol.ChatProtocol.C2CPushRespOrBuilder {
+        // @@protoc_insertion_point(builder_implements:S2CNotifyMsg)
+        personal.fields.protocol.ChatProtocol.S2CNotifyMsgOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return personal.fields.protocol.ChatProtocol.internal_static_C2CPushResp_descriptor;
+        return personal.fields.protocol.ChatProtocol.internal_static_S2CNotifyMsg_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return personal.fields.protocol.ChatProtocol.internal_static_C2CPushResp_fieldAccessorTable
+        return personal.fields.protocol.ChatProtocol.internal_static_S2CNotifyMsg_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                personal.fields.protocol.ChatProtocol.C2CPushResp.class, personal.fields.protocol.ChatProtocol.C2CPushResp.Builder.class);
+                personal.fields.protocol.ChatProtocol.S2CNotifyMsg.class, personal.fields.protocol.ChatProtocol.S2CNotifyMsg.Builder.class);
       }
 
-      // Construct using personal.fields.protocol.ChatProtocol.C2CPushResp.newBuilder()
+      // Construct using personal.fields.protocol.ChatProtocol.S2CNotifyMsg.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -5041,27 +5374,31 @@ public final class ChatProtocol {
         bitField0_ = (bitField0_ & ~0x00000001);
         fromId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        msgId_ = 0;
+        toId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
         msg_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
+        msgId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        seq_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return personal.fields.protocol.ChatProtocol.internal_static_C2CPushResp_descriptor;
+        return personal.fields.protocol.ChatProtocol.internal_static_S2CNotifyMsg_descriptor;
       }
 
       @java.lang.Override
-      public personal.fields.protocol.ChatProtocol.C2CPushResp getDefaultInstanceForType() {
-        return personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance();
+      public personal.fields.protocol.ChatProtocol.S2CNotifyMsg getDefaultInstanceForType() {
+        return personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance();
       }
 
       @java.lang.Override
-      public personal.fields.protocol.ChatProtocol.C2CPushResp build() {
-        personal.fields.protocol.ChatProtocol.C2CPushResp result = buildPartial();
+      public personal.fields.protocol.ChatProtocol.S2CNotifyMsg build() {
+        personal.fields.protocol.ChatProtocol.S2CNotifyMsg result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -5069,8 +5406,8 @@ public final class ChatProtocol {
       }
 
       @java.lang.Override
-      public personal.fields.protocol.ChatProtocol.C2CPushResp buildPartial() {
-        personal.fields.protocol.ChatProtocol.C2CPushResp result = new personal.fields.protocol.ChatProtocol.C2CPushResp(this);
+      public personal.fields.protocol.ChatProtocol.S2CNotifyMsg buildPartial() {
+        personal.fields.protocol.ChatProtocol.S2CNotifyMsg result = new personal.fields.protocol.ChatProtocol.S2CNotifyMsg(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -5082,13 +5419,21 @@ public final class ChatProtocol {
           to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.msgId_ = msgId_;
+          result.toId_ = toId_;
           to_bitField0_ |= 0x00000004;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
           to_bitField0_ |= 0x00000008;
         }
         result.msg_ = msg_;
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.msgId_ = msgId_;
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.seq_ = seq_;
+          to_bitField0_ |= 0x00000020;
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5128,29 +5473,35 @@ public final class ChatProtocol {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof personal.fields.protocol.ChatProtocol.C2CPushResp) {
-          return mergeFrom((personal.fields.protocol.ChatProtocol.C2CPushResp)other);
+        if (other instanceof personal.fields.protocol.ChatProtocol.S2CNotifyMsg) {
+          return mergeFrom((personal.fields.protocol.ChatProtocol.S2CNotifyMsg)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(personal.fields.protocol.ChatProtocol.C2CPushResp other) {
-        if (other == personal.fields.protocol.ChatProtocol.C2CPushResp.getDefaultInstance()) return this;
+      public Builder mergeFrom(personal.fields.protocol.ChatProtocol.S2CNotifyMsg other) {
+        if (other == personal.fields.protocol.ChatProtocol.S2CNotifyMsg.getDefaultInstance()) return this;
         if (other.hasVersion()) {
           setVersion(other.getVersion());
         }
         if (other.hasFromId()) {
           setFromId(other.getFromId());
         }
-        if (other.hasMsgId()) {
-          setMsgId(other.getMsgId());
+        if (other.hasToId()) {
+          setToId(other.getToId());
         }
         if (other.hasMsg()) {
           bitField0_ |= 0x00000008;
           msg_ = other.msg_;
           onChanged();
+        }
+        if (other.hasMsgId()) {
+          setMsgId(other.getMsgId());
+        }
+        if (other.hasSeq()) {
+          setSeq(other.getSeq());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5165,10 +5516,16 @@ public final class ChatProtocol {
         if (!hasFromId()) {
           return false;
         }
-        if (!hasMsgId()) {
+        if (!hasToId()) {
           return false;
         }
         if (!hasMsg()) {
+          return false;
+        }
+        if (!hasMsgId()) {
+          return false;
+        }
+        if (!hasSeq()) {
           return false;
         }
         return true;
@@ -5179,11 +5536,11 @@ public final class ChatProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        personal.fields.protocol.ChatProtocol.C2CPushResp parsedMessage = null;
+        personal.fields.protocol.ChatProtocol.S2CNotifyMsg parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (personal.fields.protocol.ChatProtocol.C2CPushResp) e.getUnfinishedMessage();
+          parsedMessage = (personal.fields.protocol.ChatProtocol.S2CNotifyMsg) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5272,57 +5629,41 @@ public final class ChatProtocol {
         return this;
       }
 
-      private int msgId_ ;
+      private int toId_ ;
       /**
-       * <pre>
-       * 服务器对消息的生成的 id
-       * </pre>
-       *
-       * <code>required int32 msgId = 3;</code>
-       * @return Whether the msgId field is set.
+       * <code>required int32 toId = 3;</code>
+       * @return Whether the toId field is set.
        */
       @java.lang.Override
-      public boolean hasMsgId() {
+      public boolean hasToId() {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <pre>
-       * 服务器对消息的生成的 id
-       * </pre>
-       *
-       * <code>required int32 msgId = 3;</code>
-       * @return The msgId.
+       * <code>required int32 toId = 3;</code>
+       * @return The toId.
        */
       @java.lang.Override
-      public int getMsgId() {
-        return msgId_;
+      public int getToId() {
+        return toId_;
       }
       /**
-       * <pre>
-       * 服务器对消息的生成的 id
-       * </pre>
-       *
-       * <code>required int32 msgId = 3;</code>
-       * @param value The msgId to set.
+       * <code>required int32 toId = 3;</code>
+       * @param value The toId to set.
        * @return This builder for chaining.
        */
-      public Builder setMsgId(int value) {
+      public Builder setToId(int value) {
         bitField0_ |= 0x00000004;
-        msgId_ = value;
+        toId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <pre>
-       * 服务器对消息的生成的 id
-       * </pre>
-       *
-       * <code>required int32 msgId = 3;</code>
+       * <code>required int32 toId = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearMsgId() {
+      public Builder clearToId() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        msgId_ = 0;
+        toId_ = 0;
         onChanged();
         return this;
       }
@@ -5410,6 +5751,84 @@ public final class ChatProtocol {
         onChanged();
         return this;
       }
+
+      private int msgId_ ;
+      /**
+       * <code>required int32 msgId = 5;</code>
+       * @return Whether the msgId field is set.
+       */
+      @java.lang.Override
+      public boolean hasMsgId() {
+        return ((bitField0_ & 0x00000010) != 0);
+      }
+      /**
+       * <code>required int32 msgId = 5;</code>
+       * @return The msgId.
+       */
+      @java.lang.Override
+      public int getMsgId() {
+        return msgId_;
+      }
+      /**
+       * <code>required int32 msgId = 5;</code>
+       * @param value The msgId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMsgId(int value) {
+        bitField0_ |= 0x00000010;
+        msgId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 msgId = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMsgId() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        msgId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int seq_ ;
+      /**
+       * <code>required int32 seq = 6;</code>
+       * @return Whether the seq field is set.
+       */
+      @java.lang.Override
+      public boolean hasSeq() {
+        return ((bitField0_ & 0x00000020) != 0);
+      }
+      /**
+       * <code>required int32 seq = 6;</code>
+       * @return The seq.
+       */
+      @java.lang.Override
+      public int getSeq() {
+        return seq_;
+      }
+      /**
+       * <code>required int32 seq = 6;</code>
+       * @param value The seq to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSeq(int value) {
+        bitField0_ |= 0x00000020;
+        seq_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 seq = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSeq() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        seq_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -5423,41 +5842,861 @@ public final class ChatProtocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:C2CPushResp)
+      // @@protoc_insertion_point(builder_scope:S2CNotifyMsg)
     }
 
-    // @@protoc_insertion_point(class_scope:C2CPushResp)
-    private static final personal.fields.protocol.ChatProtocol.C2CPushResp DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:S2CNotifyMsg)
+    private static final personal.fields.protocol.ChatProtocol.S2CNotifyMsg DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new personal.fields.protocol.ChatProtocol.C2CPushResp();
+      DEFAULT_INSTANCE = new personal.fields.protocol.ChatProtocol.S2CNotifyMsg();
     }
 
-    public static personal.fields.protocol.ChatProtocol.C2CPushResp getDefaultInstance() {
+    public static personal.fields.protocol.ChatProtocol.S2CNotifyMsg getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<C2CPushResp>
-        PARSER = new com.google.protobuf.AbstractParser<C2CPushResp>() {
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<S2CNotifyMsg>
+        PARSER = new com.google.protobuf.AbstractParser<S2CNotifyMsg>() {
       @java.lang.Override
-      public C2CPushResp parsePartialFrom(
+      public S2CNotifyMsg parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new C2CPushResp(input, extensionRegistry);
+        return new S2CNotifyMsg(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<C2CPushResp> parser() {
+    public static com.google.protobuf.Parser<S2CNotifyMsg> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<C2CPushResp> getParserForType() {
+    public com.google.protobuf.Parser<S2CNotifyMsg> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public personal.fields.protocol.ChatProtocol.C2CPushResp getDefaultInstanceForType() {
+    public personal.fields.protocol.ChatProtocol.S2CNotifyMsg getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ACKOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ACK)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required int32 seq = 1;</code>
+     * @return Whether the seq field is set.
+     */
+    boolean hasSeq();
+    /**
+     * <code>required int32 seq = 1;</code>
+     * @return The seq.
+     */
+    int getSeq();
+
+    /**
+     * <code>required int32 ack = 2;</code>
+     * @return Whether the ack field is set.
+     */
+    boolean hasAck();
+    /**
+     * <code>required int32 ack = 2;</code>
+     * @return The ack.
+     */
+    int getAck();
+
+    /**
+     * <code>optional string opt = 3;</code>
+     * @return Whether the opt field is set.
+     */
+    boolean hasOpt();
+    /**
+     * <code>optional string opt = 3;</code>
+     * @return The opt.
+     */
+    java.lang.String getOpt();
+    /**
+     * <code>optional string opt = 3;</code>
+     * @return The bytes for opt.
+     */
+    com.google.protobuf.ByteString
+        getOptBytes();
+  }
+  /**
+   * Protobuf type {@code ACK}
+   */
+  public static final class ACK extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ACK)
+      ACKOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ACK.newBuilder() to construct.
+    private ACK(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ACK() {
+      opt_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ACK();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ACK(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              bitField0_ |= 0x00000001;
+              seq_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              ack_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              opt_ = bs;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return personal.fields.protocol.ChatProtocol.internal_static_ACK_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return personal.fields.protocol.ChatProtocol.internal_static_ACK_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              personal.fields.protocol.ChatProtocol.ACK.class, personal.fields.protocol.ChatProtocol.ACK.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int SEQ_FIELD_NUMBER = 1;
+    private int seq_;
+    /**
+     * <code>required int32 seq = 1;</code>
+     * @return Whether the seq field is set.
+     */
+    @java.lang.Override
+    public boolean hasSeq() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>required int32 seq = 1;</code>
+     * @return The seq.
+     */
+    @java.lang.Override
+    public int getSeq() {
+      return seq_;
+    }
+
+    public static final int ACK_FIELD_NUMBER = 2;
+    private int ack_;
+    /**
+     * <code>required int32 ack = 2;</code>
+     * @return Whether the ack field is set.
+     */
+    @java.lang.Override
+    public boolean hasAck() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <code>required int32 ack = 2;</code>
+     * @return The ack.
+     */
+    @java.lang.Override
+    public int getAck() {
+      return ack_;
+    }
+
+    public static final int OPT_FIELD_NUMBER = 3;
+    private volatile java.lang.Object opt_;
+    /**
+     * <code>optional string opt = 3;</code>
+     * @return Whether the opt field is set.
+     */
+    @java.lang.Override
+    public boolean hasOpt() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>optional string opt = 3;</code>
+     * @return The opt.
+     */
+    @java.lang.Override
+    public java.lang.String getOpt() {
+      java.lang.Object ref = opt_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          opt_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string opt = 3;</code>
+     * @return The bytes for opt.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getOptBytes() {
+      java.lang.Object ref = opt_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        opt_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasSeq()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasAck()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeInt32(1, seq_);
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        output.writeInt32(2, ack_);
+      }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, opt_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, seq_);
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, ack_);
+      }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, opt_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof personal.fields.protocol.ChatProtocol.ACK)) {
+        return super.equals(obj);
+      }
+      personal.fields.protocol.ChatProtocol.ACK other = (personal.fields.protocol.ChatProtocol.ACK) obj;
+
+      if (hasSeq() != other.hasSeq()) return false;
+      if (hasSeq()) {
+        if (getSeq()
+            != other.getSeq()) return false;
+      }
+      if (hasAck() != other.hasAck()) return false;
+      if (hasAck()) {
+        if (getAck()
+            != other.getAck()) return false;
+      }
+      if (hasOpt() != other.hasOpt()) return false;
+      if (hasOpt()) {
+        if (!getOpt()
+            .equals(other.getOpt())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasSeq()) {
+        hash = (37 * hash) + SEQ_FIELD_NUMBER;
+        hash = (53 * hash) + getSeq();
+      }
+      if (hasAck()) {
+        hash = (37 * hash) + ACK_FIELD_NUMBER;
+        hash = (53 * hash) + getAck();
+      }
+      if (hasOpt()) {
+        hash = (37 * hash) + OPT_FIELD_NUMBER;
+        hash = (53 * hash) + getOpt().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static personal.fields.protocol.ChatProtocol.ACK parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(personal.fields.protocol.ChatProtocol.ACK prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ACK}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ACK)
+        personal.fields.protocol.ChatProtocol.ACKOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return personal.fields.protocol.ChatProtocol.internal_static_ACK_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return personal.fields.protocol.ChatProtocol.internal_static_ACK_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                personal.fields.protocol.ChatProtocol.ACK.class, personal.fields.protocol.ChatProtocol.ACK.Builder.class);
+      }
+
+      // Construct using personal.fields.protocol.ChatProtocol.ACK.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        seq_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        ack_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        opt_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return personal.fields.protocol.ChatProtocol.internal_static_ACK_descriptor;
+      }
+
+      @java.lang.Override
+      public personal.fields.protocol.ChatProtocol.ACK getDefaultInstanceForType() {
+        return personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public personal.fields.protocol.ChatProtocol.ACK build() {
+        personal.fields.protocol.ChatProtocol.ACK result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public personal.fields.protocol.ChatProtocol.ACK buildPartial() {
+        personal.fields.protocol.ChatProtocol.ACK result = new personal.fields.protocol.ChatProtocol.ACK(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.seq_ = seq_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.ack_ = ack_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.opt_ = opt_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof personal.fields.protocol.ChatProtocol.ACK) {
+          return mergeFrom((personal.fields.protocol.ChatProtocol.ACK)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(personal.fields.protocol.ChatProtocol.ACK other) {
+        if (other == personal.fields.protocol.ChatProtocol.ACK.getDefaultInstance()) return this;
+        if (other.hasSeq()) {
+          setSeq(other.getSeq());
+        }
+        if (other.hasAck()) {
+          setAck(other.getAck());
+        }
+        if (other.hasOpt()) {
+          bitField0_ |= 0x00000004;
+          opt_ = other.opt_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        if (!hasSeq()) {
+          return false;
+        }
+        if (!hasAck()) {
+          return false;
+        }
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        personal.fields.protocol.ChatProtocol.ACK parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (personal.fields.protocol.ChatProtocol.ACK) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int seq_ ;
+      /**
+       * <code>required int32 seq = 1;</code>
+       * @return Whether the seq field is set.
+       */
+      @java.lang.Override
+      public boolean hasSeq() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>required int32 seq = 1;</code>
+       * @return The seq.
+       */
+      @java.lang.Override
+      public int getSeq() {
+        return seq_;
+      }
+      /**
+       * <code>required int32 seq = 1;</code>
+       * @param value The seq to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSeq(int value) {
+        bitField0_ |= 0x00000001;
+        seq_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 seq = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSeq() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        seq_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int ack_ ;
+      /**
+       * <code>required int32 ack = 2;</code>
+       * @return Whether the ack field is set.
+       */
+      @java.lang.Override
+      public boolean hasAck() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>required int32 ack = 2;</code>
+       * @return The ack.
+       */
+      @java.lang.Override
+      public int getAck() {
+        return ack_;
+      }
+      /**
+       * <code>required int32 ack = 2;</code>
+       * @param value The ack to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAck(int value) {
+        bitField0_ |= 0x00000002;
+        ack_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 ack = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAck() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        ack_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object opt_ = "";
+      /**
+       * <code>optional string opt = 3;</code>
+       * @return Whether the opt field is set.
+       */
+      public boolean hasOpt() {
+        return ((bitField0_ & 0x00000004) != 0);
+      }
+      /**
+       * <code>optional string opt = 3;</code>
+       * @return The opt.
+       */
+      public java.lang.String getOpt() {
+        java.lang.Object ref = opt_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            opt_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string opt = 3;</code>
+       * @return The bytes for opt.
+       */
+      public com.google.protobuf.ByteString
+          getOptBytes() {
+        java.lang.Object ref = opt_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          opt_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string opt = 3;</code>
+       * @param value The opt to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOpt(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        opt_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string opt = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOpt() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        opt_ = getDefaultInstance().getOpt();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string opt = 3;</code>
+       * @param value The bytes for opt to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOptBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        opt_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ACK)
+    }
+
+    // @@protoc_insertion_point(class_scope:ACK)
+    private static final personal.fields.protocol.ChatProtocol.ACK DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new personal.fields.protocol.ChatProtocol.ACK();
+    }
+
+    public static personal.fields.protocol.ChatProtocol.ACK getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<ACK>
+        PARSER = new com.google.protobuf.AbstractParser<ACK>() {
+      @java.lang.Override
+      public ACK parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ACK(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ACK> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ACK> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public personal.fields.protocol.ChatProtocol.ACK getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5484,10 +6723,15 @@ public final class ChatProtocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_C2CSendReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_C2CPushResp_descriptor;
+    internal_static_S2CNotifyMsg_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_C2CPushResp_fieldAccessorTable;
+      internal_static_S2CNotifyMsg_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ACK_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ACK_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -5497,25 +6741,25 @@ public final class ChatProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022ChatProtocol.proto\"\321\002\n\rChatProtoPack\022\017" +
-      "\n\007version\030\001 \002(\005\022)\n\010dataType\030\002 \002(\0162\027.Chat" +
-      "ProtoPack.DataType\022%\n\014heartBeatReq\030\003 \001(\013" +
-      "2\r.HeartBeatReqH\000\022\'\n\rheartBeatResp\030\004 \001(\013" +
-      "2\016.HeartBeatRespH\000\022!\n\nc2cSendReq\030\005 \001(\0132\013" +
-      ".C2CSendReqH\000\022#\n\013c2cPushResp\030\006 \001(\0132\014.C2C" +
-      "PushRespH\000\"`\n\010DataType\022\024\n\020HeartBeatReqTy" +
-      "pe\020\001\022\025\n\021HeartBeatRespType\020\002\022\022\n\016C2CSendRe" +
-      "qType\020\003\022\023\n\017C2CPushRespType\020\004B\n\n\010dataBody" +
-      "\"<\n\014HeartBeatReq\022\017\n\007version\030\001 \002(\005\022\016\n\006use" +
-      "rId\030\002 \002(\005\022\013\n\003msg\030\003 \001(\t\"-\n\rHeartBeatResp\022" +
-      "\017\n\007version\030\001 \002(\005\022\013\n\003msg\030\003 \001(\t\"\203\001\n\nC2CSen" +
-      "dReq\022\017\n\007version\030\001 \002(\005\022\016\n\006fromId\030\002 \002(\005\022\014\n" +
-      "\004toId\030\003 \002(\005\022\013\n\003msg\030\004 \002(\t\"9\n\004type\022\010\n\004text" +
-      "\020\000\022\007\n\003pic\020\001\022\t\n\005audio\020\002\022\t\n\005video\020\003\022\010\n\004fil" +
-      "e\020\004\"J\n\013C2CPushResp\022\017\n\007version\030\001 \002(\005\022\016\n\006f" +
-      "romId\030\002 \002(\005\022\r\n\005msgId\030\003 \002(\005\022\013\n\003msg\030\004 \002(\tB" +
-      "(\n\030personal.fields.protocolB\014ChatProtoco" +
-      "l"
+      "\n\022ChatProtocol.proto\"\333\001\n\rChatProtoPack\022\017" +
+      "\n\007version\030\001 \002(\005\022%\n\014heartBeatReq\030\002 \001(\0132\r." +
+      "HeartBeatReqH\000\022\'\n\rheartBeatResp\030\003 \001(\0132\016." +
+      "HeartBeatRespH\000\022!\n\nc2cSendReq\030\004 \001(\0132\013.C2" +
+      "CSendReqH\000\022%\n\014s2cNotifyMsg\030\005 \001(\0132\r.S2CNo" +
+      "tifyMsgH\000\022\023\n\003ack\030\006 \001(\0132\004.ACKH\000B\n\n\010dataBo" +
+      "dy\"<\n\014HeartBeatReq\022\017\n\007version\030\001 \002(\005\022\016\n\006u" +
+      "serId\030\002 \002(\005\022\013\n\003msg\030\003 \001(\t\"-\n\rHeartBeatRes" +
+      "p\022\017\n\007version\030\001 \002(\005\022\013\n\003msg\030\003 \001(\t\"\220\001\n\nC2CS" +
+      "endReq\022\017\n\007version\030\001 \002(\005\022\016\n\006fromId\030\002 \002(\005\022" +
+      "\014\n\004toId\030\003 \002(\005\022\013\n\003msg\030\004 \002(\t\022\013\n\003seq\030\005 \002(\005\"" +
+      "9\n\004type\022\010\n\004text\020\000\022\007\n\003pic\020\001\022\t\n\005audio\020\002\022\t\n" +
+      "\005video\020\003\022\010\n\004file\020\004\"\241\001\n\014S2CNotifyMsg\022\017\n\007v" +
+      "ersion\030\001 \002(\005\022\016\n\006fromId\030\002 \002(\005\022\014\n\004toId\030\003 \002" +
+      "(\005\022\013\n\003msg\030\004 \002(\t\022\r\n\005msgId\030\005 \002(\005\022\013\n\003seq\030\006 " +
+      "\002(\005\"9\n\004type\022\010\n\004text\020\000\022\007\n\003pic\020\001\022\t\n\005audio\020" +
+      "\002\022\t\n\005video\020\003\022\010\n\004file\020\004\",\n\003ACK\022\013\n\003seq\030\001 \002" +
+      "(\005\022\013\n\003ack\030\002 \002(\005\022\013\n\003opt\030\003 \001(\tB(\n\030personal" +
+      ".fields.protocolB\014ChatProtocol"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -5526,7 +6770,7 @@ public final class ChatProtocol {
     internal_static_ChatProtoPack_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ChatProtoPack_descriptor,
-        new java.lang.String[] { "Version", "DataType", "HeartBeatReq", "HeartBeatResp", "C2CSendReq", "C2CPushResp", "DataBody", });
+        new java.lang.String[] { "Version", "HeartBeatReq", "HeartBeatResp", "C2CSendReq", "S2CNotifyMsg", "Ack", "DataBody", });
     internal_static_HeartBeatReq_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_HeartBeatReq_fieldAccessorTable = new
@@ -5544,13 +6788,19 @@ public final class ChatProtocol {
     internal_static_C2CSendReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_C2CSendReq_descriptor,
-        new java.lang.String[] { "Version", "FromId", "ToId", "Msg", });
-    internal_static_C2CPushResp_descriptor =
+        new java.lang.String[] { "Version", "FromId", "ToId", "Msg", "Seq", });
+    internal_static_S2CNotifyMsg_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_C2CPushResp_fieldAccessorTable = new
+    internal_static_S2CNotifyMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_C2CPushResp_descriptor,
-        new java.lang.String[] { "Version", "FromId", "MsgId", "Msg", });
+        internal_static_S2CNotifyMsg_descriptor,
+        new java.lang.String[] { "Version", "FromId", "ToId", "Msg", "MsgId", "Seq", });
+    internal_static_ACK_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_ACK_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ACK_descriptor,
+        new java.lang.String[] { "Seq", "Ack", "Opt", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

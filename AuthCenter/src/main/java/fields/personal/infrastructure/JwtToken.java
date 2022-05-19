@@ -16,6 +16,8 @@ public class JwtToken implements Token {
         this.tokenStr = tokenStr;
         if (!verify(tokenStr))
             throw new TokenParseErrorException();
+        user = new UserInfo();
+        user.setUserId();
     }
 
 

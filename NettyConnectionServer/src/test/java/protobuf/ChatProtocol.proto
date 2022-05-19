@@ -6,24 +6,15 @@ option java_outer_classname = "ChatProtocol";
 
 message ChatProtoPack {
 
-
-    enum DataType {
-        HeartBeatReqType = 1;
-        HeartBeatRespType = 2;
-        C2CSendReqType = 3;
-        C2CPushRespType = 4;
-    }
-
     required int32 version = 1;
-
-    required DataType dataType = 2;
 
     oneof dataBody {
 
-        HeartBeatReq heartBeatReq = 3;
-        HeartBeatResp heartBeatResp = 4;
-        C2CSendReq c2cSendReq = 5;
-        C2CPushResp c2cPushResp = 6;
+        HeartBeatReq heartBeatReq = 2;
+        HeartBeatResp heartBeatResp = 3;
+        C2CSendReq c2cSendReq = 4;
+        S2CNotifyMsg s2cNotifyMsg = 5;
+        ACK ack = 6;
 
     }
 }
@@ -59,6 +50,8 @@ message C2CSendReq {
 
     required string msg = 4;
 
+    required int32 seq = 5;
+
     enum type {
         text = 0;
         pic = 1;
@@ -69,15 +62,37 @@ message C2CSendReq {
 }
 
 
-message C2CPushResp {
+message S2CNotifyMsg {
 
     required int32 version = 1;
 
     required int32 fromId = 2;
 
-    // 服务器对消息的生成的 id
-    required int32 msgId = 3;
+    required int32 toId = 3;
 
     required string msg = 4;
 
+    required int32 msgId = 5;
+
+    required int32 seq = 6;
+
+    enum type {
+        text = 0;
+        pic = 1;
+        audio = 2;
+        video = 3;
+        file = 4;
+    }
+
+}
+
+
+
+message ACK {
+
+    required int32 seq = 1;
+
+    required int32 ack = 2;
+
+    optional string opt = 3;
 }
