@@ -5,9 +5,12 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import personal.fields.protocol.ChatProtocol;
-import personal.fields.protocol.HeartBeatRequest;
-import personal.fields.protocol.HeartBeatResponse;
 
+/*
+
+    弃用
+
+ */
 public class HeartBeatHandler extends SimpleChannelInboundHandler<ChatProtocol.ChatProtoPack> {
 
     private static final Logger logger = LoggerFactory.getLogger(HeartBeatHandler.class);
@@ -19,9 +22,9 @@ public class HeartBeatHandler extends SimpleChannelInboundHandler<ChatProtocol.C
         logger.info("客户端 " + request.getHeartBeatReq().getUserId() + " 发来心跳");
 
         ChatProtocol.ChatProtoPack.Builder builder = ChatProtocol.ChatProtoPack.newBuilder()
-                .setDataType(ChatProtocol.ChatProtoPack.DataType.HeartBeatRespType)
-                            .setHeartBeatResp(ChatProtocol.HeartBeatResp.newBuilder()
-                                .setVersion(1).build());
+                .setVersion(1)
+                .setHeartBeatResp(ChatProtocol.HeartBeatResp.newBuilder()
+                        .setVersion(1).build());
         ChatProtocol.ChatProtoPack response = builder.build();
         ctx.channel().writeAndFlush(response);
     }
@@ -36,6 +39,13 @@ public class HeartBeatHandler extends SimpleChannelInboundHandler<ChatProtocol.C
         ctx.channel().close();
 
         // 移出 redis 集群中的 userId，channel 映射关系
+    }
+
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        logger.error(cause.getMessage());
+        cause.printStackTrace();
     }
 
 }

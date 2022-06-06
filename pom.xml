@@ -13,8 +13,9 @@
         <module>NettyConnectionServer</module>
         <module>logic</module>
         <module>repository</module>
-        <module>common</module>
+        <module>Common</module>
         <module>AuthCenter</module>
+
     </modules>
 
     <properties>
@@ -28,37 +29,22 @@
         <log4j-core.version>2.17.1</log4j-core.version>
         <log4j-api.version>2.17.1</log4j-api.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <jwt.version>3.8.2</jwt.version>
+        <netty.version>4.1.63.Final</netty.version>
+        <rocketmq.version>4.9.3</rocketmq.version>
     </properties>
 
 
         <dependencies>
 
 
-            <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
-            <dependency>
-                <groupId>com.google.protobuf</groupId>
-                <artifactId>protobuf-java</artifactId>
-                <version>${protobuf.version}</version>
-
-            </dependency>
-
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
+                <artifactId>spring-boot-starter</artifactId>
                 <version>${springweb.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
 
 
             <dependency>
@@ -92,6 +78,7 @@
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
             </dependency>
+
 
             <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
             <dependency>

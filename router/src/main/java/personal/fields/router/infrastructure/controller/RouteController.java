@@ -1,16 +1,16 @@
 package personal.fields.router.infrastructure.controller;
 
 import VO.ServerInfo;
+import fields.personal.infrastructure.JwtToken;
+import fields.personal.token.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
+import personal.fields.router.result.ResultDTO;
 import personal.fields.router.serverMangerment.NettyServerManager;
-import result.ResultDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import personal.fields.router.DTO.ServerInfoDTO;
-import token.JwtToken;
-import token.Token;
 
 @RestController
 public class RouteController {

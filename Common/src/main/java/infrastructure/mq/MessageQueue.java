@@ -1,2 +1,6 @@
-package infrastructure.mq;public interface MessageQueue {
+package infrastructure.mq;
+
+public interface MessageQueue {
+
+
 }

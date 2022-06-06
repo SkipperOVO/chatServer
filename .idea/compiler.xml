@@ -10,9 +10,9 @@
         <module name="AuthCenter" />
         <module name="router" />
         <module name="logic" />
-        <module name="common" />
         <module name="repository" />
         <module name="NettyConnectionServer" />
+        <module name="Common" />
       </profile>
     </annotationProcessing>
   </component>

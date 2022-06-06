@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import personal.fields.NettyServerBootStrap;
 
+import javax.annotation.PostConstruct;
 import java.net.InetSocketAddress;
 
 @Component
@@ -19,9 +20,9 @@ public class NettyChatServer {
 
     private static final Logger logger = LoggerFactory.getLogger(NettyChatServer.class);
 
-    private EventLoopGroup bossGrop = new NioEventLoopGroup(200);
+    private EventLoopGroup bossGrop = new NioEventLoopGroup(20);
 
-    private EventLoopGroup workerGrop = new NioEventLoopGroup(200);
+    private EventLoopGroup workerGrop = new NioEventLoopGroup(100);
 
     @Value("${netty.port}")
     private int nettyPort;
@@ -31,12 +32,14 @@ public class NettyChatServer {
                 .group(bossGrop, workerGrop)
                 .channel(NioServerSocketChannel.class)
                 .localAddress(new InetSocketAddress(nettyPort))
+                .option(ChannelOption.SO_BACKLOG, 1024)
+                .childOption(ChannelOption.TCP_NODELAY, true)
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childHandler(new NettyChatServerInitializer());
         ChannelFuture future = serverBootstrap.bind().sync();
 
         if (future.isSuccess()) {
-            logger.info("Netty server 启动成功！");
+            logger.info("Netty server 启动成功！监听在" + nettyPort + "端口");
         } else {
             logger.info("Netty server 启动失败！");
         }

@@ -1,5 +1,6 @@
 package personal.fields.router.config;
 
+import VO.ServerInfo;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.serialize.SerializableSerializer;
 import org.slf4j.Logger;
@@ -10,7 +11,6 @@ import personal.fields.router.infrastructure.ServerListener;
 import personal.fields.router.serverMangerment.BalanceLoader;
 import personal.fields.router.serverMangerment.LocalBalanceLoader;
 import personal.fields.router.serverMangerment.NettyServerManagerIml;
-import VO.ServerInfo;
 import personal.fields.router.infrastructure.ServerListenerIml;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

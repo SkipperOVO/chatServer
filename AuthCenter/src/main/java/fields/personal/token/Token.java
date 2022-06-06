@@ -1,4 +1,4 @@
-package token;
+package fields.personal.token;
 
 public interface Token {
 
@@ -8,7 +8,7 @@ public interface Token {
 
     public String getRole();
 
-    public boolean verify(String token);
+    public  boolean verify(String token);
 
     public String getTokenString();
 }
