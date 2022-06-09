@@ -20,7 +20,7 @@ public class ProcessorContainer {
     private LinkedBlockingQueue<ChatProtocol.ChatProtoPack> ackQueue = new LinkedBlockingQueue<>(64);
 
     private final ThreadPoolExecutor businessThreads = new ThreadPoolExecutor(
-            8, 256, 5*60, TimeUnit.SECONDS, new LinkedBlockingDeque<>(32));
+            8, 256, 3*60, TimeUnit.SECONDS, new LinkedBlockingDeque<>(64));
 
 
     public void process(ChannelHandlerContext ctx, ChatProtocol.ChatProtoPack msg) {

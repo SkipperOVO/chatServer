@@ -12,6 +12,7 @@ import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.HttpVersion;
 import io.netty.handler.codec.http.websocketx.*;
+import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.Attribute;
 import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
@@ -25,6 +26,10 @@ import personal.fields.channelMap.SimpleHashMap;
 import personal.fields.constant.AttrbuteSet;
 import personal.fields.infrastructure.ioc.IOC.SpringIOC;
 
+
+import javax.swing.text.AttributeSet;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 import static io.netty.handler.codec.http.HttpUtil.isKeepAlive;
 import static personal.fields.constant.Constant.ONLINE_COUNT;
@@ -57,6 +62,12 @@ public class NioWebsocketHandler extends SimpleChannelInboundHandler<Object> {
 
                 cache.incr(ONLINE_COUNT);
                 logger.info("当前在线用户数：" + cache.get(ONLINE_COUNT));
+
+                // channel 添加ACK queue绑定
+                Attribute<BlockingQueue> notify_queue = ch.attr(AttrbuteSet.NOTIFY_QUEUE);
+                notify_queue.set(new LinkedBlockingDeque(16));
+                Attribute<BlockingQueue> ack_queue = ch.attr(AttrbuteSet.ACK_QUEUE);
+                ack_queue.set(new LinkedBlockingDeque(32));
 
             } catch (TokenParseErrorException tke) {
                 logger.warn("token 非法");
@@ -108,12 +119,28 @@ public class NioWebsocketHandler extends SimpleChannelInboundHandler<Object> {
     }
 
 
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) {
+        if (evt instanceof IdleStateEvent) {
+
+        }
+    }
+
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
 
-        Attribute<Integer> userId = ctx.attr(AttributeKey.valueOf("userId"));
-        ChannelMap channelIdMap = SpringIOC.getBean(SimpleHashMap.class);
+
+    }
+
+
+    private void offline(Channel ch) {
+
+        Attribute<Integer> userId = ch.attr(AttributeKey.valueOf("userId"));
+
+        logger.info("用户 " + userId + " 心跳超时,即将下线");
+
+        ChannelMap channelIdMap = (ChannelMap) SpringIOC.getBean("getChannelIdMap");
         channelIdMap.remove(userId.get());
 
         // Todo 删除cache中用户和 serverInfo 的映射
@@ -122,12 +149,9 @@ public class NioWebsocketHandler extends SimpleChannelInboundHandler<Object> {
         cache.decr(ONLINE_COUNT);
         logger.info("当前在线用户数：" + cache.get(ONLINE_COUNT));
 
-        ctx.close();
+        ch.close();
         cache.release();
-
     }
-
-
 
 
     /**

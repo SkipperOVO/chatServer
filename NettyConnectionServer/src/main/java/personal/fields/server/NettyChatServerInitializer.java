@@ -6,6 +6,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
+import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.stereotype.Component;
 import personal.fields.channelHandler.*;
 import personal.fields.infrastructure.ioc.IOC.SpringIOC;
@@ -20,7 +21,7 @@ public class NettyChatServerInitializer extends ChannelInitializer<Channel> {
         // inbound
         ch.pipeline()
                 //30 秒没有向客户端发送消息就发生心跳
-//                .addLast(new IdleStateHandler(30, 30, 0))
+                .addLast(new IdleStateHandler(30, 30, 0))
                 // http 编解器
                 .addLast(new HttpServerCodec())
                 // http 消息聚合器
