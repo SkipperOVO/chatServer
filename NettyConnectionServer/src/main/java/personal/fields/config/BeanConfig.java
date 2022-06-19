@@ -52,6 +52,8 @@ public class BeanConfig {
         container.addProcessor("HEARTBEATREQ", new HeartBeatProcessor(container.getThreadPool(), container));
         container.addProcessor("C2CSENDREQ", new C2CChatProcessor(container.getThreadPool(), container));
         container.addProcessor("ACK", new ACKProcessor(container.getThreadPool(), container));
+
+        container.
         return container;
     }
 

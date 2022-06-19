@@ -1,5 +1,6 @@
 package personal.fields.channelHandler;
 
+import VO.ServerInfo;
 import exception.TokenParseErrorException;
 import fields.personal.infrastructure.JwtToken;
 import infrastructure.cache.Cache;
@@ -58,6 +59,8 @@ public class NioWebsocketHandler extends SimpleChannelInboundHandler<Object> {
                 userIdAttr.set(token.getUserId());
                 ChannelMap channelIdMap = (SimpleHashMap) SpringIOC.getBean("getChannelIdMap");
                 channelIdMap.put(token.getUserId(), ch);
+                // 保存用户和 nettyServer 的映射
+                cache.set(token.getUserId().toString(), new ServerInfo());
 
 
                 cache.incr(ONLINE_COUNT);
@@ -122,7 +125,7 @@ public class NioWebsocketHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) {
         if (evt instanceof IdleStateEvent) {
-
+            this.offline(ctx.channel());
         }
     }
 
@@ -143,11 +146,13 @@ public class NioWebsocketHandler extends SimpleChannelInboundHandler<Object> {
         ChannelMap channelIdMap = (ChannelMap) SpringIOC.getBean("getChannelIdMap");
         channelIdMap.remove(userId.get());
 
-        // Todo 删除cache中用户和 serverInfo 的映射
         Cache cache = new JedisCache();
 
         cache.decr(ONLINE_COUNT);
         logger.info("当前在线用户数：" + cache.get(ONLINE_COUNT));
+
+        // 删除cache中用户和 serverInfo 的映射
+        cache.del(userId.get().toString());
 
         ch.close();
         cache.release();

@@ -8,13 +8,13 @@ import org.springframework.core.env.Environment;
 @Data
 public class ServerInfo {
 
-    @Value("${server.local.address}")
+    @Value("${netty.ip}")
     private String ip;
 
-    @Value("${server.local.port}")
+    @Value("${netty.port}")
     private Integer port;
 
-    @Value("${server.local.name}")
+    @Value("${servername}")
     private String name;
 
     @Autowired
