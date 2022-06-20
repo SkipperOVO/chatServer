@@ -1,5 +1,6 @@
 package VO;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ public class ServerInfo {
     private String name;
 
     @Autowired
+    @JSONField(serialize = false)
     private Environment env;
 
     public ServerInfo() {

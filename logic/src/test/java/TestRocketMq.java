@@ -21,27 +21,27 @@ public class TestRocketMq {
             producer.setNamesrvAddr("localhost:9876");
             producer.start();
 
-            new Thread(()->{
-
-                try {
-
-                    for (int i = 0; i < 10; ++i) {
-                        Message msg = new Message("TopicTest", "tagTest", ("this is test msg : " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-                        SendResult res = producer.send(msg);
-                        System.out.println(res);
-                        Thread.sleep(1000);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }).start();
+//            new Thread(()->{
+//
+//                try {
+//
+//                    for (int i = 0; i < 5; ++i) {
+//                        Message msg = new Message("TopicTest", "tagTest", ("this is test msg : " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+//                        SendResult res = producer.send(msg);
+//                        System.out.println(res);
+//                        Thread.sleep(1000);
+//                    }
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }).start();
 
 
             DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("consumer01");
             consumer.setNamesrvAddr("localhost:9876");
-            consumer.subscribe("TopicTest", "*");
+            consumer.subscribe("TopicTest", "tagTest");
             consumer.registerMessageListener(new MessageListenerConcurrently() {
                 @Override
                 public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {

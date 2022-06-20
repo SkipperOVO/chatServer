@@ -1,6 +1,7 @@
 package personal.fields.channelHandler;
 
 import VO.ServerInfo;
+import com.alibaba.fastjson.JSON;
 import exception.TokenParseErrorException;
 import fields.personal.infrastructure.JwtToken;
 import infrastructure.cache.Cache;
@@ -60,7 +61,9 @@ public class NioWebsocketHandler extends SimpleChannelInboundHandler<Object> {
                 ChannelMap channelIdMap = (SimpleHashMap) SpringIOC.getBean("getChannelIdMap");
                 channelIdMap.put(token.getUserId(), ch);
                 // 保存用户和 nettyServer 的映射
-                cache.set(token.getUserId().toString(), new ServerInfo());
+                ServerInfo serverInfo = SpringIOC.getBean(ServerInfo.class);
+                String test = JSON.toJSONString(serverInfo);
+                cache.set(token.getUserId().toString(), JSON.toJSONString(SpringIOC.getBean(ServerInfo.class)));
 
 
                 cache.incr(ONLINE_COUNT);

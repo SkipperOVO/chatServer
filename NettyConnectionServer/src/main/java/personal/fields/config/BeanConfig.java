@@ -1,5 +1,6 @@
 package personal.fields.config;
 
+import VO.ServerInfo;
 import io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -45,18 +46,11 @@ public class BeanConfig {
         return new JedisCache();
     }
 
+
     @Bean
-    public ProcessorContainer getProcessorContainer() {
-        ProcessorContainer container = new ProcessorContainer();
-        // Todo 初始化 processor 应该从配置文件读或者 spring 上下文中读，省略
-        container.addProcessor("HEARTBEATREQ", new HeartBeatProcessor(container.getThreadPool(), container));
-        container.addProcessor("C2CSENDREQ", new C2CChatProcessor(container.getThreadPool(), container));
-        container.addProcessor("ACK", new ACKProcessor(container.getThreadPool(), container));
-
-        container.
-        return container;
+    public ServerInfo getServerInfo() {
+        return new ServerInfo();
     }
-
 //    @Bean
 //    public Jedis getJedis() {
 //        return new Jedis(redisAddress, port);

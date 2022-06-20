@@ -1,10 +1,16 @@
 package personal.fields.processor;
 
+import com.alibaba.fastjson.JSON;
 import infrastructure.cache.Cache;
 import infrastructure.cache.JedisCache;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.Attribute;
+import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.client.producer.SendStatus;
+import org.apache.rocketmq.common.message.Message;
+import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import personal.fields.channelMap.ChannelMap;
@@ -14,9 +20,11 @@ import personal.fields.infrastructure.ioc.IOC.SpringIOC;
 import personal.fields.protocol.ChatProtocol;
 import personal.fields.util.ACKToString;
 import personal.fields.util.MessageHelper;
+import personal.fields.util.ProtoToProto;
 import personal.fields.util.Seq;
 import personal.fields.vo.NotifyPendingPack;
 
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.*;
 import java.util.function.Predicate;
 
@@ -34,7 +42,7 @@ public class C2CChatProcessor extends BaseProcessor {
 
     private ScheduledThreadPoolExecutor ackDaemon = new ScheduledThreadPoolExecutor(1);
 
-    private  Channel ch;
+    private Channel ch;
 
     public C2CChatProcessor(ThreadPoolExecutor threadPool, ProcessorContainer container) {
         super(threadPool, container);
@@ -49,56 +57,80 @@ public class C2CChatProcessor extends BaseProcessor {
 
     public void process(ChannelHandlerContext ctx, ChatProtocol.ChatProtoPack msg) {
 
-        this.ch = ctx.channel();
-        // Todo 发送落库MQ消息给 logic
+        try {
+            this.ch = ctx.channel();
+            // Todo 发送落库MQ消息给 logic
+            DefaultMQProducer mqProducer = this.container.getMqProducer();
+            ChatProtocol.C2CSendReq sendReq = msg.getC2CSendReq();
+            String reqJson = JSON.toJSONString(ProtoToProto.C2CSendGoogleToC2C(sendReq));
+            Message message = new Message("C2CTopic_send", "TAG:c2csend", reqJson.getBytes(RemotingHelper.DEFAULT_CHARSET));
+            SendResult sendResult = mqProducer.send(message);
+            // 投递 send 消息到 MQ 成功, 返回客户端 ACK
+            if (sendResult.getSendStatus() == SendStatus.SEND_OK) {
+                ChatProtocol.ChatProtoPack ack = ChatProtocol.ChatProtoPack.newBuilder()
+                        .setVersion(1)
+                        .setAck(ChatProtocol.ACK.newBuilder()
+                                .setSeq(Seq.generate())
+                                .setAck(msg.getC2CSendReq().getSeq() + 1).build()).build();
+                ch.writeAndFlush(ack);
+                logger.info("send 消息投递到 mq 成功！");
+            } else {
+                // MQ 出现拥挤或者故障，不返回 ACK，使系统不可用
+                // 啥也不做
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("发送 send 消息到 logic 失败！");
+        }
+
 
         // 以下代码 在 MQ 消息监听器中执行
         // 发送给客户端 ACK
-        ChatProtocol.ChatProtoPack ack = ChatProtocol.ChatProtoPack.newBuilder()
-                .setVersion(1)
-                .setAck(ChatProtocol.ACK.newBuilder()
-                        .setSeq(Seq.generate())
-                        .setAck(msg.getC2CSendReq().getSeq() + 1).build()).build();
-        ch.writeAndFlush(ack);
-
-
-        ChatProtocol.C2CSendReq sendReq = msg.getC2CSendReq();
-        Cache cache = new JedisCache();
-        // 查看消息接收方 clientB 是否在线
-        if (cache.get(ch.attr(USER_ID).get().toString()) != null) {
-            logger.info("用户B在线！给他推送消息了！");
-            // 接收方在线,启动推送消息流程
-            ChatProtocol.ChatProtoPack notifyMsg = MessageHelper.buildS2CNotifyMsg(sendReq, /*从消息队列获取的落库消息id msgId*/999, Seq.generate());
-            ChannelMap<Integer, Channel> channelIdMap = (SimpleHashMap) SpringIOC.getBean("getChannelIdMap");
-            Channel peerCh = channelIdMap.get(sendReq.getToId());
-            this.addNotifyPack(notifyMsg);
-            peerCh.writeAndFlush(notifyMsg);
-            logger.info("notify SEQ: " + notifyMsg.getS2CNotifyMsg().getSeq());
-
-            //  设置定时任务发送notify并接收 clientB 的 ACK
-//            ACKFetch ackFetchTask = new ACKFetch(peerCh, ch, notifyMsg);
-//            this.scheduleWithFixedDelay(ackFetchTask, 0, 1, TimeUnit.SECONDS);
-
-        } else {
-            logger.info("用户B不在线！启动离线消息过程");
-            //Todo 用户离线,启动离线消息过程,发送离线mq消息给 logic
-            // 需要监听返回结果，不成功需要不断重试
-
-        }
+//        ChatProtocol.ChatProtoPack ack = ChatProtocol.ChatProtoPack.newBuilder()
+//                .setVersion(1)
+//                .setAck(ChatProtocol.ACK.newBuilder()
+//                        .setSeq(Seq.generate())
+//                        .setAck(msg.getC2CSendReq().getSeq() + 1).build()).build();
+//        ch.writeAndFlush(ack);
+//
+//
+//        ChatProtocol.C2CSendReq sendReq = msg.getC2CSendReq();
+//        Cache cache = new JedisCache();
+//        // 查看消息接收方 clientB 是否在线
+//        if (cache.get(ch.attr(USER_ID).get().toString()) != null) {
+//            logger.info("用户B在线！给他推送消息了！");
+//            // 接收方在线,启动推送消息流程
+//            ChatProtocol.ChatProtoPack notifyMsg = MessageHelper.buildS2CNotifyMsg(sendReq, /*从消息队列获取的落库消息id msgId*/999, Seq.generate());
+//            ChannelMap<Integer, Channel> channelIdMap = (SimpleHashMap) SpringIOC.getBean("getChannelIdMap");
+//            Channel peerCh = channelIdMap.get(sendReq.getToId());
+//            this.addNotifyPack(notifyMsg);
+//            peerCh.writeAndFlush(notifyMsg);
+//            logger.info("notify SEQ: " + notifyMsg.getS2CNotifyMsg().getSeq());
+//
+//            //  设置定时任务发送notify并接收 clientB 的 ACK
+////            ACKFetch ackFetchTask = new ACKFetch(peerCh, ch, notifyMsg);
+////            this.scheduleWithFixedDelay(ackFetchTask, 0, 1, TimeUnit.SECONDS);
+//
+//        } else {
+//            logger.info("用户B不在线！启动离线消息过程");
+//            //Todo 用户离线,启动离线消息过程,发送离线mq消息给 logic
+//            // 需要监听返回结果，不成功需要不断重试
+//
+//        }
 
     }
 
     public void addNotifyPack(ChatProtocol.ChatProtoPack notifyMsg) {
 
-        this.execute(()-> {
-                try {
-                    // 并发容器 put 线程安全, 可能会阻塞，所以使用业务线程放入
-                    BlockingQueue<NotifyPendingPack> notify_queue = ch.attr(AttrbuteSet.NOTIFY_QUEUE).get();
-                    notify_queue.put(new NotifyPendingPack(notifyMsg, System.currentTimeMillis()));
-                } catch (InterruptedException ine) {
-                    ine.printStackTrace();
-                    // 重试放入两次
-                }
+        this.execute(() -> {
+            try {
+                // 并发容器 put 线程安全, 可能会阻塞，所以使用业务线程放入
+                BlockingQueue<NotifyPendingPack> notify_queue = ch.attr(AttrbuteSet.NOTIFY_QUEUE).get();
+                notify_queue.put(new NotifyPendingPack(notifyMsg, System.currentTimeMillis()));
+            } catch (InterruptedException ine) {
+                ine.printStackTrace();
+                // 重试放入两次
+            }
         });
 
     }

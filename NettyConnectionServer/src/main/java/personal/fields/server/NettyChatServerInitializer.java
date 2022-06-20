@@ -21,7 +21,7 @@ public class NettyChatServerInitializer extends ChannelInitializer<Channel> {
         // inbound
         ch.pipeline()
                 //30 秒没有向客户端发送消息就发生心跳
-                .addLast(new IdleStateHandler(30, 30, 0))
+                .addLast(new IdleStateHandler(60*30, 60*30, 0))
                 // http 编解器
                 .addLast(new HttpServerCodec())
                 // http 消息聚合器

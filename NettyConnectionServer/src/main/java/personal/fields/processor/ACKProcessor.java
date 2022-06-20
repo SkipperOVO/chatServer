@@ -8,6 +8,7 @@ import personal.fields.channelMap.SimpleHashMap;
 import personal.fields.constant.AttrbuteSet;
 import personal.fields.infrastructure.ioc.IOC.SpringIOC;
 import personal.fields.protocol.ChatProtocol;
+import personal.fields.protocol.logicProtocol.NotifyPendingPackText;
 import personal.fields.util.ACKToString;
 import personal.fields.vo.NotifyPendingPack;
 
@@ -50,8 +51,9 @@ public class ACKProcessor extends BaseProcessor {
      *
      * 方案3：
      *  使用一个全局 任务队列 ，每次有ACK消息到达，都递交到任务队列，由线程池中一个线程执行。每个任务标记自己的channel和自己所属的线程id，每次提交到线程池的任务队列时，都要只要自己的
-     *  绑定线程执行自己，防止自己被并发执行，避免了同步问题。模仿netty的线程模式。如果不是自己的线程取到了自己（任务），那就把我再放回队列中吧，我只要我的线程。设置一个几十万长度的任务队列,
-     *  按照一个任务 1KB 计算，几十万也才几十M的内存，可以接受。(如果超出任务队列，丢弃，和断网是一样的流程了）。性能高，不阻塞 IO 线程，客户端和服务器端响应性都很高。没有死ACK。
+     *  绑定线程执行自己，防止自己被并发执行(相当于在单个channel上是串行的，但是各个channel上是并行的），避免了同步问题。模仿netty的线程模式。如果不是自己的线程取到了自己（任务），
+     *  那就把我再放回队列中吧，我只要我的线程。设置一个几十万长度的任务队列,按照一个任务 1KB 计算，几十万也才几十M的内存，可以接受。(如果超出任务队列，丢弃，和断网是一样的流程了）。
+     *  性能高，不阻塞 IO 线程，客户端和服务器端响应性都很高。没有死ACK。
      *
      *
      * 超时重发机制：
@@ -87,7 +89,7 @@ public class ACKProcessor extends BaseProcessor {
                 int batch = Math.min(ack_queue.size(), 16);
                 // 开始匹配 Notify
                 // notify_queue 可能会有另一个线程在并发在尾部添加元素，只有当前线程会 remove 队列中的元素（消费者生产者模型）
-                BlockingQueue<NotifyPendingPack> notify_queue = ctx.channel().attr(AttrbuteSet.NOTIFY_QUEUE).get();
+                BlockingQueue<NotifyPendingPackText> notify_queue = ctx.channel().attr(AttrbuteSet.NOTIFY_QUEUE).get();
                 SimpleHashMap<Integer, Channel> channelMap = ((SimpleHashMap) SpringIOC.getBean("getChannelIdMap"));
                 for (int i = 0; i < batch; ++i) {
                     ChatProtocol.ChatProtoPack ack = ack_queue.take();
@@ -102,13 +104,13 @@ public class ACKProcessor extends BaseProcessor {
                     // 遍历当前的 notifyQueue 快照(此时并发新添加的 notify 不会被处理）
                     boolean matched = false;
                     for (int k = 0; k < notiftQSize; ++k) {
-                        NotifyPendingPack notify = notify_queue.peek();
+                        NotifyPendingPackText notify = notify_queue.peek();
                         // ACK 匹配 notify
-                        if (notify.getNotifyPack().getS2CNotifyMsg().getSeq()+1 == ack.getAck().getAck()) {
+                        if (notify.getNotifyPack().getSeq()+1 == ack.getAck().getAck()) {
                             // 这个remove会是一个 O(N) 的操作，但是可以通过自己实现阻塞队列来优化到 O(1)
                             notify_queue.remove(notify);
                             // 发送给 clientB ack 消息
-                            Channel peerCh = channelMap.get(notify.getNotifyPack().getS2CNotifyMsg().getToId());
+                            Channel peerCh = channelMap.get(notify.getNotifyPack().getToId());
                             peerCh.writeAndFlush(ack.getAck().getSeq() + 1);
                             logger.info("收到客户端对notify的ACK：");
                             logger.info(ACKToString.ackString(ack));

@@ -26,7 +26,6 @@ public class DispatchMessageHandler extends SimpleChannelInboundHandler<ChatProt
     private static final Logger logger = LoggerFactory.getLogger(DispatchMessageHandler.class);
 
     @Autowired
-    @Qualifier("getProcessorContainer")
     private ProcessorContainer proContainer;
 
 

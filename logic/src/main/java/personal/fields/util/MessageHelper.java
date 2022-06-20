@@ -1,6 +1,8 @@
 package personal.fields.util;
 
+import personal.fields.protocol.C2CSendReq;
 import personal.fields.protocol.ChatProtocol;
+import personal.fields.protocol.NotifyMsgText;
 
 import static personal.fields.constant.Constant.PROTO_VERSION;
 
@@ -26,6 +28,17 @@ public class MessageHelper {
     }
 
 
+    public static NotifyMsgText buildS2CNotifyText(C2CSendReq c2cSendReq, Integer msgId, Integer seq) {
+        NotifyMsgText notifyMsgText = new NotifyMsgText();
+        notifyMsgText.setFromId(c2cSendReq.getFromId());
+        notifyMsgText.setToId(c2cSendReq.getToId());
+        notifyMsgText.setMsg(c2cSendReq.getMsg());
+        notifyMsgText.setMsgId(msgId);
+        notifyMsgText.setSeq(seq);
+        return notifyMsgText;
+    }
+
+
     public static ChatProtocol.ChatProtoPack buildS2CNotifyMsg(ChatProtocol.C2CSendReq msg, Integer msgId, Integer seq ) {
 
         return ChatProtocol.ChatProtoPack.newBuilder()
@@ -46,4 +59,6 @@ public class MessageHelper {
                 .setAck(seq+1)
                 .setSeq(Seq.generate()).build()).build();
     }
+
+
 }
