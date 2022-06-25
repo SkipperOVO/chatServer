@@ -10,6 +10,7 @@ import personal.fields.infrastructure.ioc.IOC.SpringIOC;
 import personal.fields.protocol.ChatProtocol;
 import personal.fields.protocol.logicProtocol.NotifyPendingPackText;
 import personal.fields.util.ACKToString;
+import personal.fields.util.concurrent.DelayExecutorGroup;
 import personal.fields.vo.NotifyPendingPack;
 
 import java.util.concurrent.*;
@@ -20,8 +21,8 @@ public class ACKProcessor extends BaseProcessor {
 
     private volatile boolean isRunning = false;
 
-    public ACKProcessor(ThreadPoolExecutor threadPool, ProcessorContainer container) {
-        super(threadPool, container);
+    public ACKProcessor(DelayExecutorGroup executor, ProcessorContainer container) {
+        super(executor, container);
     }
 
 
@@ -45,7 +46,7 @@ public class ACKProcessor extends BaseProcessor {
      *  这个方法性能很好，利用了多线程多处理器和selector，同时又没有阻塞IO线程。存在的问题是，匹配过程依赖IO事件，如果队列中有ACK，但是没有IO事件了，相当于这个用户和所有人都没有
      *  数据交互了，那么就会出现饥饿ACK，然后触发了超时重发，白白浪费了。使用较短的队列可以避免这种情况出现，极端情况就是队列长度尾1，那么每次ACK都会被处理，而代价就是IO线程put时
      *  被阻塞，降低服务器响应性；与之相反，增大队列长度，将会提升服务器的响应性，但是饥饿ACK会降低用户端的响应性。越大的队列饥饿ACK约多。（一是完全没有数据交互是低频操作，另一个是
-     *  使用稍微短些ACKqueue可以有效缓解这种情况）
+     *  使用稍微短些ACKqueue可以有效缓解这种情况, 三 是可以利用心跳报文来触发ACK事件，确保不会出现饥饿）
      *  (糟糕的解决方法。解决方法可以是通过定时扫描一遍所有ACKqueue，避免出现饥饿ACK。或者利用心跳机制）
      *
      *
@@ -54,6 +55,12 @@ public class ACKProcessor extends BaseProcessor {
      *  绑定线程执行自己，防止自己被并发执行(相当于在单个channel上是串行的，但是各个channel上是并行的），避免了同步问题。模仿netty的线程模式。如果不是自己的线程取到了自己（任务），
      *  那就把我再放回队列中吧，我只要我的线程。设置一个几十万长度的任务队列,按照一个任务 1KB 计算，几十万也才几十M的内存，可以接受。(如果超出任务队列，丢弃，和断网是一样的流程了）。
      *  性能高，不阻塞 IO 线程，客户端和服务器端响应性都很高。没有死ACK。
+     *
+     * 最终方案：
+     *  全局ACK加上用户级NotifyQueue，加上自己实现的多线程调度线程池。没有ACK阻塞，没有线程安全问题，还可以方便实现超时重传（定时任务扫描某个用户的Notify队列，查看该Notify是否存在，
+     *  如果不存在则表示已经被ACK消耗掉，任务结束。如果存在Notify，那么说明Notify通知发生了超时，继续提交一个定时任务，并重传当前的Notify。
+     *
+     * 注意：因为使用的单线程绑定模式，所以每个用户上使用单线程执行时，对于状态的改变都不能阻塞，一旦阻塞了，没有其他线程可以去修改状态来让阻塞线程恢复执行。
      *
      *
      * 超时重发机制：
@@ -66,7 +73,7 @@ public class ACKProcessor extends BaseProcessor {
     @Override
     public void process(ChannelHandlerContext ctx, ChatProtocol.ChatProtoPack msg) {
 
-        BlockingQueue<ChatProtocol.ChatProtoPack> ack_queue = ctx.channel().attr(AttrbuteSet.ACK_QUEUE).get();
+        BlockingQueue<ChatProtocol.ChatProtoPack> ack_queue = this.container.getAckQueue();
 
         if (isRunning) {
             try {

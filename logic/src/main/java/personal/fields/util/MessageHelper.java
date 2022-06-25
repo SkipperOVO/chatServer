@@ -35,6 +35,7 @@ public class MessageHelper {
         notifyMsgText.setMsg(c2cSendReq.getMsg());
         notifyMsgText.setMsgId(msgId);
         notifyMsgText.setSeq(seq);
+        notifyMsgText.setVersion(1);
         return notifyMsgText;
     }
 

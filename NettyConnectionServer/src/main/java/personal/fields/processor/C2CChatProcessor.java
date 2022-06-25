@@ -22,6 +22,7 @@ import personal.fields.util.ACKToString;
 import personal.fields.util.MessageHelper;
 import personal.fields.util.ProtoToProto;
 import personal.fields.util.Seq;
+import personal.fields.util.concurrent.DelayExecutorGroup;
 import personal.fields.vo.NotifyPendingPack;
 
 import java.nio.charset.StandardCharsets;
@@ -44,8 +45,8 @@ public class C2CChatProcessor extends BaseProcessor {
 
     private Channel ch;
 
-    public C2CChatProcessor(ThreadPoolExecutor threadPool, ProcessorContainer container) {
-        super(threadPool, container);
+    public C2CChatProcessor(DelayExecutorGroup executor, ProcessorContainer container) {
+        super(executor, container);
 
         // 启动定时任务检查队列中超时 notifyPack
 //        this.ackDaemon.scheduleAtFixedRate(

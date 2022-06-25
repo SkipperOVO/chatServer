@@ -18,7 +18,7 @@ public class AttrbuteSet {
 
     public static final AttributeKey<BlockingQueue> NOTIFY_QUEUE = AttributeKey.valueOf("notify_queue");
 
-    public static final AttributeKey<BlockingQueue> ACK_QUEUE = AttributeKey.valueOf("ack_queue");
+//    public static final AttributeKey<BlockingQueue> ACK_QUEUE = AttributeKey.valueOf("ack_queue");
 
 
 }

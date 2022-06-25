@@ -17,7 +17,7 @@ public class ConsumerAndProducer {
         new Thread(()->{
             System.out.println("consumer started");
             Long start = System.currentTimeMillis();
-                for (int i = 0; i < 5000; ++i) {
+                for (int i = 0; i < 500; ++i) {
                     System.out.println("consumer get : " + blockingQueue.get() + "; ");
                 }
             System.out.println("time: " + (System.currentTimeMillis() - start));
@@ -26,7 +26,7 @@ public class ConsumerAndProducer {
 
             new Thread(()->{
             System.out.println("producer started");
-                for (int i = 0; i < 5000; i ++) {
+                for (int i = 0; i < 500; i ++) {
                     blockingQueue.put(i);
                     System.out.println("producer put : " + i + "; ");
                 }
@@ -177,10 +177,10 @@ public class ConsumerAndProducer {
                     notFull.await();
                 }
                 queue.addLast(t);
-                c = count.incrementAndGet();
+                c = count.getAndIncrement();
 //                notEmpty.signal();
-//                if (c + 1 < CAPACITY)
-//                    notFull.signal();
+                if (c + 1 < CAPACITY)
+                    notFull.signal();
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -189,6 +189,7 @@ public class ConsumerAndProducer {
             // 如果之前一直是空的，那么现在 put 后不为空了，通知一下get线程
             if (c == 0) {
                 signalNotEmpty();
+                System.out.println("通知了get线程");
             }
         }
 
@@ -203,10 +204,10 @@ public class ConsumerAndProducer {
                     notEmpty.await();
                 }
                 res = queue.removeFirst();
-                c = count.decrementAndGet();
-//                if (c > 1) {
-//                    notEmpty.signal();
-//                }
+                c = count.getAndDecrement();
+                if (c > 1) {
+                    notEmpty.signal();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import personal.fields.channelHandler.HeartBeatHandler;
 import personal.fields.protocol.ChatProtocol;
+import personal.fields.util.concurrent.DelayExecutorGroup;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -15,8 +16,8 @@ public class HeartBeatProcessor extends BaseProcessor {
     private static final Logger logger = LoggerFactory.getLogger(HeartBeatHandler.class);
 
 
-    public HeartBeatProcessor(ThreadPoolExecutor threadPool, ProcessorContainer container) {
-        super(threadPool, container);
+    public HeartBeatProcessor(DelayExecutorGroup executor, ProcessorContainer container) {
+        super(executor, container);
     }
 
 

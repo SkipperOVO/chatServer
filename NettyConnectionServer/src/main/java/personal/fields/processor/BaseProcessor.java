@@ -1,12 +1,14 @@
 package personal.fields.processor;
 
+import personal.fields.util.concurrent.DelayExecutorGroup;
+
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseProcessor implements Processor {
 
-    private ThreadPoolExecutor threadPool;
+    private DelayExecutorGroup executor;
 
     protected ProcessorContainer container;
 
@@ -14,17 +16,17 @@ public abstract class BaseProcessor implements Processor {
 
     }
 
-    public BaseProcessor(ThreadPoolExecutor threadPool, ProcessorContainer container) {
-        this.threadPool = threadPool;
+    public BaseProcessor(DelayExecutorGroup executor, ProcessorContainer container) {
+        this.executor = executor;
         this.container = container;
     }
 
-    public void setThreadPool(ThreadPoolExecutor threadPool) {
-        this.threadPool = threadPool;
+    public void setThreadPool(DelayExecutorGroup executor) {
+        this.executor = executor;
     }
 
     public void execute(Runnable task) {
-        this.threadPool.execute(task);
+        this.executor.execute(task);
     }
 
 //    public void schedule(Runnable task, int delay, TimeUnit timeUnit) {

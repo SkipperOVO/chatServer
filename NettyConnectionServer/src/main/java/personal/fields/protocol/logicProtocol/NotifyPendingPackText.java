@@ -26,4 +26,17 @@ public class NotifyPendingPackText {
     public String toString() {
         return notifyPack.toString() + " " + JSON.toJSONString(this);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        NotifyPendingPackText obj = (NotifyPendingPackText) o;
+        return this.notifyPack.equals(obj.getNotifyPack())
+                && this.sendTime == obj.sendTime
+                && this.retryTimes == obj.retryTimes;
+    }
+
+    @Override
+    public int hashCode() {
+        return ((int) sendTime + retryTimes) & notifyPack.hashCode();
+    }
 }

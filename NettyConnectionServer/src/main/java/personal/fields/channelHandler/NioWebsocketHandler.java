@@ -69,11 +69,11 @@ public class NioWebsocketHandler extends SimpleChannelInboundHandler<Object> {
                 cache.incr(ONLINE_COUNT);
                 logger.info("当前在线用户数：" + cache.get(ONLINE_COUNT));
 
-                // channel 添加ACK queue绑定
+                // channel 添加Notify queue绑定
                 Attribute<BlockingQueue> notify_queue = ch.attr(AttrbuteSet.NOTIFY_QUEUE);
                 notify_queue.set(new LinkedBlockingDeque(16));
-                Attribute<BlockingQueue> ack_queue = ch.attr(AttrbuteSet.ACK_QUEUE);
-                ack_queue.set(new LinkedBlockingDeque(32));
+//                Attribute<BlockingQueue> ack_queue = ch.attr(AttrbuteSet.ACK_QUEUE);
+//                ack_queue.set(new LinkedBlockingDeque(32));
 
             } catch (TokenParseErrorException tke) {
                 logger.warn("token 非法");
